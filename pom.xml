@@ -279,7 +279,7 @@
 		</repository>
 	</repositories>
 	<build>
-		<finalName>myDemo</finalName>
+		<finalName>myDemo1</finalName>
 		<resources>
 			<resource>
 				<filtering>true</filtering>

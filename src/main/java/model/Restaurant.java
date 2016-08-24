@@ -12,8 +12,11 @@ import java.util.List;
 @Entity
 @NamedQuery(name="Restaurant.findAll", query="SELECT r FROM Restaurant r")
 public class Restaurant implements Serializable {
-	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1745415695191428459L;
 	@Id
 	private int id;
 

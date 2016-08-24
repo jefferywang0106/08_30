@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+        <h:head>
+        </h:head>
+        <body>
+        <h:form>
+			<h:panelGrid columns="4" cellpadding="5">
+				<h:outputLabel for="name" value="Name:" style="font-weight:bold" />
+				<p:inputText id="name" value="#{aa.text}" />
+				<p:commandButton value="" update="display"
+					icon="ui-icon-check" />
+				<h:outputText id="display" value="#{aa.text}" />
+			</h:panelGrid>
+		</h:form>
+        
+        
+        </body>
+        </html>

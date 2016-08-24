@@ -53,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<%
 		HttpSession se = request.getSession();
 		if(se.getAttribute("account")==null){
-			response.sendRedirect("Index.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		int count = 0;
 		
