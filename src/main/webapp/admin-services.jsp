@@ -94,7 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="menu.jsp">我要訂餐</a></li>
 						<li><a href="order.jsp">發起訂餐</a></li>
 						<li><a href="contact.jsp">聯絡我們</a></li>
-						<li><a href="Index.jsp">登出</a></li>
+						<li><a href="index.jsp">登出</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse --> </nav>

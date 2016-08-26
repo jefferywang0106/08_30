@@ -5,21 +5,18 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-
 <h:head>
 <title>餓揪訂餐網站</title>
 <!-- for-mobile-apps -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords"
 	content="Deliccio Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript">
 	
-	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } 
-
 
 </script>
 <!-- //for-mobile-apps -->
@@ -32,7 +29,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- FlexSlider -->
 <link rel="stylesheet" href="css/flexslider.css" type="text/css"
 	media="screen" />
-<script defer src="js/jquery.flexslider.js"></script>
+<!-- <script defer src="js/jquery.flexslider.js"></script> -->
 <script type="text/javascript">
 	$(window).load(function() {
 		$('.flexslider').flexslider({
@@ -47,11 +44,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </h:head>
 
 <body>
-	<% HttpSession se = request.getSession();
-	if(se.getAttribute("account")==null){
-	response.sendRedirect("index.jsp"); }else
-	if(!((String)se.getAttribute("mtype")).equals("高級會員")){
-	response.sendRedirect("ServiceServelet"); } %>
+	<!-- <%
+		HttpSession se = request.getSession();
+		if(se.getAttribute("account")==null){
+			response.sendRedirect("index.jsp");
+		}else if(!((String)se.getAttribute("mtype")).equals("高級會員")){
+			response.sendRedirect("ServiceServelet");
+		}
+	%> -->
 	<script>
 		(function(i, s, o, g, r, a, m) {
 			i['GoogleAnalyticsObject'] = r;
@@ -88,10 +88,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="ServiceServelet">回首頁</a></li>
-						<li><a href="menu.jsp">我要訂餐</a></li>
-						<li><a href="order.jsp">發起訂餐</a></li>
-						<li><a href="contact.jsp">聯絡我們</a></li>
-						<li><a href="Index.jsp">登出</a></li>
+						<li><a href="menu.xhtml">我要訂餐</a></li>
+						<li><a href="order.xhtml">發起訂餐</a></li>
+						<li><a href="contact.xhtml">聯絡我們</a></li>
+						<li><a href="index.xhtml">登出</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse --> </nav>
@@ -102,7 +102,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- services -->
 	<div class="services">
 		<div class="container">
-			<h3>${account}的個人紀錄 (餘額 : <%=session.getAttribute("cash") %>)</h3>
+			<h3>admin的個人紀錄   (餘額 : 10000)</h3>
 			<div class="line"></div>
 			<div class="grid_3 grid_5">
 				<div class="bs-example bs-example-tabs" role="tabpanel"
@@ -119,7 +119,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							id="dropdown2-tab" data-toggle="tab" aria-controls="profile">查詢發起狀態</a></li>
 						<li role="presentation" class="dropdown"><a href="#"
 							id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown"
-							aria-controls="myTabDrop1-contents">管理者權限 <span class="caret"></span></a>
+							aria-controls="myTabDrop1-contents">管理者權限 <span class="caret"></span></a></li>
 							<ul class="dropdown-menu" role="menu"
 								aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
 								<li><a href="card.jsp">儲值</a></li>
@@ -130,7 +130,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div role="tabpanel" class="tab-pane fade in active" id="home"
 							aria-labelledby="home-tab">
 							<div class="bs-docs-example">
-								<br>
+								<br />
 								<table class="table table-hover">
 									<thead>
 										<tr>
@@ -141,18 +141,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</thead>
 									<tbody>
 										<!-- for迴圈跑Deposit資料 -->
-										<% ArrayList
-										<Deposit> list = null;
-										if(request.getAttribute("depositlist") != null){ list =
-										(ArrayList<Deposit>)request.getAttribute("depositlist");
-										} else { list = new ArrayList<Deposit>(); } int
-										index = 1; for(Deposit data : list){ %>
+										<!-- <%
+											ArrayList<Deposit> list = null;
+															if(request.getAttribute("depositlist") != null){
+																list = (ArrayList<Deposit>)request.getAttribute("depositlist");
+															} else {
+																list = new ArrayList<Deposit>();
+															}
+														
+															int index = 1;
+															for(Deposit data : list){
+										%>
 										<tr>
 											<td><%=index%></td>
 											<td><%=data.getDepositCash()%></td>
 											<td><%=data.getTime()%></td>
 										</tr>
-										<% index++; } %> 
+										<%
+											index++;
+															}
+										%> -->
 									</tbody>
 								</table>
 							</div>
@@ -160,7 +168,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div role="tabpanel" class="tab-pane fade" id="profile"
 							aria-labelledby="profile-tab">
 							<div class="bs-docs-example">
-								<br>
+								<br />
 								<table class="table table-bordered">
 									<thead>
 										<tr>
@@ -173,22 +181,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</tr>
 									</thead>
 									<tbody>
-										<!-- for迴圈跑消費紀錄資料 -->
-										<% ArrayList
-										<CustomerSuper> customerList = null;
-										if(request.getAttribute("customerList") != null){ customerList
-										= (ArrayList<CustomerSuper>)request.getAttribute("customerList");
-										} else { customerList = new ArrayList<CustomerSuper>();
-										} index = 1; for(CustomerSuper data : customerList){ %>
-										<tr>
-											<td><%=index%></td>
-											<td><%=data.getProduct_name()%></td>
-											<td><%=data.getCounts()%></td>
-											<td><%=data.getMoney()%></td> <%--
-											<td><%=data.getL_money() %></td> --%>
-											<td><%=data.getConsume_date()%></td>
-										</tr>
-										<% index++; } %> 
+										
 									</tbody>
 								</table>
 							</div>
@@ -209,12 +202,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</thead>
 									<tbody>
 										<!-- for迴圈跑訂單狀態資料 -->
-										<% ArrayList
-										<OrderSuper> orderList = null;
-										if(request.getAttribute("orderList") != null){ orderList =
-										(ArrayList<OrderSuper>)request.getAttribute("orderList");
-										} else { orderList = new ArrayList<OrderSuper>();
-										} for(OrderSuper data : orderList){ %>
+										<!-- <%
+											ArrayList<OrderSuper> orderList = null;
+															if(request.getAttribute("orderList") != null){
+																orderList = (ArrayList<OrderSuper>)request.getAttribute("orderList");
+															} else {
+																orderList = new ArrayList<OrderSuper>();
+															}
+														
+															for(OrderSuper data : orderList){
+										%>
 										<tr>
 											<td><%=data.getId()%></td>
 											<td><%=data.getOrder_member()%></td>
@@ -222,12 +219,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<td><%=data.getRestaurant_name()%></td>
 											<td><%=data.getStatus()%></td>
 										</tr>
-										<% } %> 
+										<%
+											}
+										%> -->
 									</tbody>
 								</table>
 							</div>
 						</div>
-
+						
 						<div role="tabpanel" class="tab-pane fade" id="dropdown2"
 							aria-labelledby="dropdown2-tab">
 							<div class="bs-docs-example">
@@ -241,26 +240,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</tr>
 									</thead>
 									<tbody>
-										<% int count = 1; List
-										<Order> myOrderList = null;
-										if(request.getAttribute("myOrderList")!=null){ myOrderList =
-										(ArrayList<Order>)request.getAttribute("myOrderList");
-										}else{ myOrderList = new ArrayList<Order>(); }
-										for(Order o:myOrderList){ %>
+										<!-- <%
+										int count = 1;
+										List<Order> myOrderList = null;
+										if(request.getAttribute("myOrderList")!=null){
+											myOrderList = (ArrayList<Order>)request.getAttribute("myOrderList");
+										}else{
+											myOrderList = new ArrayList<Order>();
+										}
+										for(Order o:myOrderList){
+										%>
 										<tr>
 											<td><%=o.getId()%></td>
 											<td><%=o.getBeginTimeStr()%></td>
 											<td><%=o.getRestaurantName()%></td>
 											<td><%=o.getStatus()%></td>
 										</tr>
-										<% count++;} %> 
+										<%
+											count++;}
+										%> -->
 									</tbody>
 								</table>
 							</div>
 						</div>
-
-
-
+						
+						
+						
 					</div>
 				</div>
 			</div>

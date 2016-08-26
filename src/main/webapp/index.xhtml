@@ -17,14 +17,6 @@
 		
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
 addEventListener("load", function() {
     setTimeout(hideURLbar, 0);
 }, false);
@@ -109,7 +101,7 @@ function hideURLbar() {
 							class="icon-bar"></span>
 					</button>
 					<div class="logo">
-						<a class="navbar-brand" href="Index.jsp"><b>餓揪訂餐</b><span>Healthy
+						<a class="navbar-brand" href="index.xhtml"><b>餓揪訂餐</b><span>Healthy
 								And Tasty Food</span></a>
 					</div>
 				</div>
@@ -119,9 +111,9 @@ function hideURLbar() {
 					<ul class="nav navbar-nav">
 						<!-- <% if (se.getAttribute("account") != null) { %> -->
 						<li class="active"><a href="ServiceServelet">回首頁</a></li>
-						<li><a href="menu.jsp">我要訂餐</a></li>
-						<li><a href="order.jsp">發起訂餐</a></li>
-						<li><a href="contact.jsp">聯絡我們</a></li>
+						<li><a href="menu.xhtml">我要訂餐</a></li>
+						<li><a href="order.xhtml">發起訂餐</a></li>
+						<li><a href="contact.xhtml">聯絡我們</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse --> </nav>
@@ -155,9 +147,9 @@ function hideURLbar() {
 											<div class="in-form">
 												<h:form id="myForm">
 													
-													<h:inputText type="text" name="account" a:placeholder="帳號" />
-													<h:inputText type="password" name="password" a:placeholder="密碼" />
-													<h:inputText type="text" name="check_code" a:placeholder="驗證碼" />
+													<h:inputText type="text" name="account" value="#{loginText.user.account}" a:placeholder="帳號" />
+													<h:inputText type="password" name="password" value="#{loginText.user.password}" a:placeholder="密碼" />
+													<h:inputText name="check_code" a:placeholder="驗證碼" />
 
 													<img src="CheckCodeServlet" />
 													<br />
@@ -174,7 +166,7 @@ function hideURLbar() {
 															</div>-->
 															<div class="check-right">
 																<h:commandButton class="btn btn-info btn-lg" value="忘記密碼" />
-																<h:commandButton class="btn btn-info btn-lg" value="登入" onclick="login()" /> 
+																<h:commandButton class="btn btn-info btn-lg" value="登入" action="#{loginText.login}" /> 
 											
 															</div>
 															<div class="clearfix"></div>
@@ -207,6 +199,8 @@ function hideURLbar() {
 														</div>
 														<!-- Modal end-->
 													</div>
+													
+											
 												</h:form>
 											</div>
 										</div>

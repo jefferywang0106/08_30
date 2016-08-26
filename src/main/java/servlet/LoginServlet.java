@@ -100,7 +100,7 @@ public class LoginServlet extends HttpServlet {
 			if (User != 0) {
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('密碼修改完成，請至您的信箱收一下更改的密碼。');");
-				out.println("location='Index.jsp';");
+				out.println("location='index.xhtml';");
 				out.println("</script>");
 
 				new Email02(againemail, againaccount, sb.toString());
@@ -113,7 +113,7 @@ public class LoginServlet extends HttpServlet {
 			} else {
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('很抱歉，帳號及信箱輸入錯誤。密碼無法修改唷。');");
-				out.println("location='Index.jsp';");
+				out.println("location='index.jsp';");
 				out.println("</script>");
 				return;
 			}
@@ -130,7 +130,7 @@ public class LoginServlet extends HttpServlet {
 		if (member == null) {
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('帳號密碼輸入錯誤');");
-			out.println("location='Index.jsp';");
+			out.println("location='index.xhtml';");
 			out.println("</script>");
 			return;
 		}
@@ -139,7 +139,7 @@ public class LoginServlet extends HttpServlet {
 		if (session == null) {
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('驗證碼輸入錯誤');");
-			out.println("location='Index.jsp';");
+			out.println("location='index.jsp';");
 			out.println("</script>");
 			return;
 		}
@@ -148,7 +148,7 @@ public class LoginServlet extends HttpServlet {
 		if (saveCode == null) {
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('驗證碼輸入錯誤');");
-			out.println("location='Index.jsp';");
+			out.println("location='index.jsp';");
 			out.println("</script>");
 			return;
 		}
@@ -157,7 +157,7 @@ public class LoginServlet extends HttpServlet {
 		if (!saveCode.equals(checkCode)) {
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('驗證碼輸入錯誤');");
-			out.println("location='Index.jsp';");
+			out.println("location='index.jsp';");
 			out.println("</script>");
 			return;
 		} else {

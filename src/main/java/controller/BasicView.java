@@ -13,4 +13,10 @@ public class BasicView {
     public void setText(String text) {
         this.text = text;
     }
+    
+    public void getError() {
+        System.out.println("Hello World!");
+     }
+    
+    
 }

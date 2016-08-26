@@ -130,7 +130,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div role="tabpanel" class="tab-pane fade in active" id="home"
 							aria-labelledby="home-tab">
 							<div class="bs-docs-example">
-								<br>
+								<br />
 								<table class="table table-hover">
 									<thead>
 										<tr>
@@ -141,7 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</thead>
 									<tbody>
 										<!-- for迴圈跑Deposit資料 -->
-										<%
+										<!-- <%
 											ArrayList<Deposit> list = null;
 															if(request.getAttribute("depositlist") != null){
 																list = (ArrayList<Deposit>)request.getAttribute("depositlist");
@@ -151,8 +151,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 														
 															int index = 1;
 															for(Deposit data : list){
-										%>
-										<tr>
+										%> -->
+										<!-- <tr>
 											<td><%=index%></td>
 											<td><%=data.getDepositCash()%></td>
 											<td><%=data.getTime()%></td>
@@ -160,7 +160,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<%
 											index++;
 															}
-										%>
+										%> -->
 									</tbody>
 								</table>
 							</div>
@@ -168,7 +168,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div role="tabpanel" class="tab-pane fade" id="profile"
 							aria-labelledby="profile-tab">
 							<div class="bs-docs-example">
-								<br>
+								<br />
 								<table class="table table-bordered">
 									<thead>
 										<tr>
@@ -181,30 +181,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</tr>
 									</thead>
 									<tbody>
-										<!-- for迴圈跑消費紀錄資料 -->
-										<%
-											ArrayList<CustomerSuper> customerList = null;
-															if(request.getAttribute("customerList") != null){
-																customerList = (ArrayList<CustomerSuper>)request.getAttribute("customerList");
-															} else {
-																customerList = new ArrayList<CustomerSuper>();
-															}
-														
-															index = 1;
-															for(CustomerSuper data : customerList){
-										%>
-										<tr>
-											<td><%=index%></td>
-											<td><%=data.getProduct_name()%></td>
-											<td><%=data.getCounts()%></td>
-											<td><%=data.getMoney()%></td>
-											<%-- 							  <td><%=data.getL_money() %></td> --%>
-											<td><%=data.getConsume_date()%></td>
-										</tr>
-										<%
-											index++;
-															}
-										%>
+										
 									</tbody>
 								</table>
 							</div>
@@ -225,7 +202,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</thead>
 									<tbody>
 										<!-- for迴圈跑訂單狀態資料 -->
-										<%
+										<!-- <%
 											ArrayList<OrderSuper> orderList = null;
 															if(request.getAttribute("orderList") != null){
 																orderList = (ArrayList<OrderSuper>)request.getAttribute("orderList");
@@ -234,8 +211,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 															}
 														
 															for(OrderSuper data : orderList){
-										%>
-										<tr>
+										%> -->
+										<!-- <tr>
 											<td><%=data.getId()%></td>
 											<td><%=data.getOrder_member()%></td>
 											<td><%=data.getOrder_date()%></td>
@@ -244,7 +221,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</tr>
 										<%
 											}
-										%>
+										%> -->
 									</tbody>
 								</table>
 							</div>
@@ -263,7 +240,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</tr>
 									</thead>
 									<tbody>
-										<%
+										<!-- <%
 										int count = 1;
 										List<Order> myOrderList = null;
 										if(request.getAttribute("myOrderList")!=null){
@@ -281,7 +258,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</tr>
 										<%
 											count++;}
-										%>
+										%> -->
 									</tbody>
 								</table>
 							</div>
