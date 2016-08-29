@@ -148,10 +148,10 @@ function hideURLbar() {
 												<h:form id="myForm">
 													
 													<h:inputText type="text" name="account" value="#{loginText.user.account}" a:placeholder="帳號" />
-													<h:inputText type="password" name="password" value="#{loginText.user.password}" a:placeholder="密碼" />
-													<h:inputText name="check_code" a:placeholder="驗證碼" />
+													<h:inputSecret type="password" name="password" value="#{loginText.user.password}" a:placeholder="密碼" />
+													<h:inputText name="check_code" a:placeholder="驗證碼" value="#{loginText.user.checkcode}" />
 
-													<img src="CheckCodeServlet" />
+													<img src="#{request.contextPath}/CheckCodeServlet" />
 													<br />
 													<!--<img src="/learnJS/servlet/CheckCodeServlet"/>-->
 													<div class="ckeck-bg">

@@ -17,8 +17,17 @@ public class User implements Serializable{
  private int cash;
  private Date create_date;
  private String m_type;
+ private String checkcode;
  
- public User(){
+ public String getCheckcode() {
+	return checkcode;
+}
+
+public void setCheckcode(String checkcode) {
+	this.checkcode = checkcode;
+}
+
+public User(){
   
  }
  
