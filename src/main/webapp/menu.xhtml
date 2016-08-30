@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough" >
 <h:head>
 <title>餓揪訂餐網站</title>
 <!-- for-mobile-apps -->
@@ -28,16 +28,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="css/flexslider.css" type="text/css"
 	media="screen" />
 <!-- <script defer src="js/jquery.flexslider.js"></script> -->
-<script type="text/javascript">
-	$(window).load(function() {
-		$('.flexslider').flexslider({
-			animation : "slide",
-			start : function(slider) {
-				$('body').removeClass('loading');
-			}
-		});
-	});
-</script>
+
 <!-- //FlexSlider -->
 </h:head>
 <body>
@@ -77,11 +68,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="collapse navbar-collapse nav-wil"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li><a href="ServiceServelet">回首頁</a></li>
+						<li><a href="service.xhtml">回首頁</a></li>
 						<li class="active"><a href="menu.xhtml">我要訂餐</a></li>
 						<li><a href="order.xhtml">發起訂餐</a></li>
 						<li><a href="contact.xhtml">聯絡我們</a></li>
-						<li><a href="Index.xhtml">登出</a></li>
+						<li><a href="index.xhtml">登出</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse --> </nav>
@@ -94,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<div class="services-grid">
 				<div class="menu-title">
-					<h3>我發起的訂餐</h3>
+					<h3>#{loginText.user.account}發起的訂餐</h3>
 					<div class="line"></div>
 				</div>
 				<p class="proident">以下為你發起的訂單，選擇欲修改的訂單，進行修改。</p>

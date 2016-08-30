@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="model.*"%>
+<%@ page import="org.greenpeace.model.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="javax.servlet.http.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -101,7 +101,7 @@ function hideURLbar() {
 							class="icon-bar"></span>
 					</button>
 					<div class="logo">
-						<a class="navbar-brand" href="Index.jsp"><b>餓揪訂餐</b><span>Healthy
+						<a class="navbar-brand" href="index.jsp"><b>餓揪訂餐</b><span>Healthy
 								And Tasty Food</span></a>
 					</div>
 				</div>
