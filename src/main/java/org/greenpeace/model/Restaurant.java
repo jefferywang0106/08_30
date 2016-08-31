@@ -4,13 +4,12 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the RESTAURANT database table.
  * 
  */
 @Entity
-@NamedQuery(name="Restaurant.findAll", query="SELECT r FROM Restaurant r")
+@NamedQuery(name = "Restaurant.findAll", query = "SELECT r FROM Restaurant r")
 public class Restaurant implements Serializable {
 
 	/**
@@ -28,11 +27,11 @@ public class Restaurant implements Serializable {
 
 	private String phone;
 
-	@Column(name="R_TYPE")
+	@Column(name = "R_TYPE")
 	private String rType;
 
-	//bi-directional many-to-one association to Product
-	@OneToMany(mappedBy="restaurant")
+	// bi-directional many-to-one association to Product
+	@OneToMany(mappedBy = "restaurant")
 	private List<Product> products;
 
 	public Restaurant() {
@@ -41,8 +40,6 @@ public class Restaurant implements Serializable {
 	public int getId() {
 		return this.id;
 	}
-
-	
 
 	public void setId(int id) {
 		this.id = id;
@@ -57,7 +54,7 @@ public class Restaurant implements Serializable {
 	}
 
 	public String getBrief() {
-		if(this.brief!=null)
+		if (this.brief != null)
 			return this.brief;
 		else
 			return "可有可無";
@@ -76,7 +73,7 @@ public class Restaurant implements Serializable {
 	}
 
 	public String getPhone() {
-		
+
 		return this.phone;
 	}
 
@@ -85,7 +82,9 @@ public class Restaurant implements Serializable {
 	}
 
 	public String getRType() {
+
 		return this.rType;
+
 	}
 
 	public void setRType(String rType) {
@@ -113,7 +112,5 @@ public class Restaurant implements Serializable {
 
 		return product;
 	}
-	
-	
 
 }

@@ -16,6 +16,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script type="application/x-javascript">
 		
 		
+		
+		
 	
 	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
@@ -23,6 +25,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+	
+	
 	
 	</script>
 	<!-- //for-mobile-apps -->
@@ -249,7 +253,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="line"></div>
 				</div>
 				<p class="proident">
-					請選擇店家，若無需要的店家，請直接申請一個 <h:commandButton class="label label-success" action="#{addstore.xhtml}" value="新增店家"  ></h:commandButton>
+					請選擇店家，若無需要的店家，請直接新增一個 <a href="addstore.xhtml"><span
+						class="label label-success">新增店家</span></a>
 				</p>
 				<br />
 				<!--  <span >店家類型</span>
@@ -273,13 +278,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</thead>
 
 					<h:form>
-					<h:commandButton value="submit" action="#{restaurantBean.allRestaurant}"></h:commandButton>
-						<h:dataTable value="＃{restaurantBean.rlist}">
+						<h:commandButton value="submit"
+							action="#{restaurantBean.allRestaurant}"></h:commandButton>
+								#{restaurantBean.rlist}
+								
+								<h:dataTable value="#{restaurantBean.rlist}" var="restaurant">
 							<h:column>
-							<f:facet name="header">餐廳</f:facet>
-							#{restaurantBean.rlist.get(0).name}
+								<f:facet name="header">Name</f:facet>
+								<Button>#{restaurant.name}</Button>
 							</h:column>
+
 						</h:dataTable>
+
+
+
+
+
+
+
+
+
+
 					</h:form>
 
 

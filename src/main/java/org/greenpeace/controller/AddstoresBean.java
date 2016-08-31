@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
  * Servlet implementation class AddServlet
  */
 
-@ManagedBean(name = "Addstores")
+@ManagedBean(name = "addstores")
 
 
 
@@ -37,23 +37,56 @@ public void doFilter(ServletRequest request, ServletResponse response, FilterCha
 	        chain.doFilter(request, response);
 }
 	private Restaurant restaurant = new Restaurant();
+	
+	private String type ;
 
 	public Restaurant getRestaurant() {
 		return restaurant;
 	}
 
+
+
+	public String getType() {
+		return type;
+	}
+
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
+
 	public void setRestaurant(Restaurant restaurant) {
 		this.restaurant = restaurant;
 	}
+	
+	
 
 	public void stores() {
 
 		 
 			RestaurantDAO dao = new RestaurantDAO();
+			
+			System.out.println(type);
+			
+			if(type.equals("a")){
+				restaurant.setRType("便當");
+			}else if(type.equals("b")){
+				restaurant.setRType("速食");
+			}else if(type.equals("c")){
+				restaurant.setRType("日式");
+			}else{
+				restaurant.setRType("點心");
+			}
+			
 			dao.addStore(restaurant);
 		
 
 			System.out.println(restaurant.getName());
+			
+			
 
 	}
 
