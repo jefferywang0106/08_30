@@ -17,11 +17,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 		
 		
+		
+		
  
   addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
   function hideURLbar(){ window.scrollTo(0,1); } 
 
 
+	
+	
 	
 	
 	</script>
@@ -33,10 +37,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		media="all" />
 	<!-- js -->
 	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/mytable.js"></script>
 	<!-- //js -->
 	<!-- FlexSlider -->
 	<link rel="stylesheet" href="css/flexslider.css" type="text/css"
 		media="screen" />
+
 	<!-- <script defer src="js/jquery.flexslider.js"></script> -->
 	<!-- <script type="text/javascript">
 		$(window).load(function() {
@@ -134,42 +140,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<div id="header01">
-		<h:form action="AddServlet" id="form01" method="post">
+		<h:form id="form01">
 			<div style="display: none">
 				<input type="hidden" name="form:hf:0" id="form:hf:0" />
 			</div>
 			<table class="bigForm">
 
-				<h:form>
-					<tr class="title">
-						<th colspan="2">基本資料</th>
-					</tr>
-					<tr>
 
-						<td class="label01"><span class="required">*</span>名稱:</td>
-						<td><h:inputText type="text" name="account"
-								value="#{Addstores.restaurant.name}" /></td>
-					</tr>
-					<tr>
-						<td class="label01">簡介:</td>
-						<td><h:inputText name="Brief" style="width: 30em;"
-								type="text" maxlength="40" value="#{Addstores.restaurant.brief}" /></td>
-					</tr>
-					<tr>
-						<td class="label01">電話:</td>
-						<td><h:inputText name="Phone" style="width: 30em;"
-								type="text" maxlength="40" value="#{Addstores.restaurant.phone}" /></td>
-					</tr>
-					<tr>
-						<td class="label01">地址:</td>
+				<tr class="title">
+					<th colspan="2">基本資料</th>
+				</tr>
+				<tr>
 
-						<td><h:inputText name="Addr" style="width: 30em;" type="text"
-								maxlength="40" value="#{Addstores.restaurant.addr}" /></td>
+					<td class="label01"><span class="required">*</span>名稱:</td>
+					<td><h:inputText type="text" name="account" style="width: 30em;"
+							value="#{addstores.restaurant.name}" /></td>
+				</tr>
+				<tr>
+					<td class="label01">簡介:</td>
+					<td><h:inputText name="Brief" style="width: 30em;" type="text"
+							maxlength="40" value="#{addstores.restaurant.brief}" /></td>
+				</tr>
+				<tr>
+					<td class="label01">電話:</td>
+					<td><h:inputText name="Phone" style="width: 30em;" type="text"
+							maxlength="40" value="#{addstores.restaurant.phone}" /></td>
+				</tr>
+				<tr>
+					<td class="label01">地址:</td>
+
+					<td><h:inputText name="Addr" style="width: 30em;" type="text"
+							maxlength="40" value="#{addstores.restaurant.addr}" /></td>
 
 
 
-					</tr>
-				</h:form>
+				</tr>
+
+
+
+
+
+
 				<tr class="title">
 					<th colspan="2">產品設定</th>
 				</tr>
@@ -189,40 +200,46 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 									<tr>
 										<td><h:inputText name="productName" type="text" size="16"
-												value="productName" required="true" /></td>
+												value="#{addstores.product[0]}" /></td>
 										<td><h:inputText name="price" type="text" size="16"
-												value="price" required="true"
-												onkeyup="return ValidateNumber(this,value)" /></td>
-										<td><h:inputText type="button" value="刪除"
-												onclick="deleteRow(this)" /></td>
-									</tr>
+												value="price"  /></td>
 
+									</tr>
 
 									<tr>
 										<td><h:inputText name="productName" type="text" size="16"
-												value="productName" required="true" /></td>
+												value="#{addstores.product[1]}"  /></td>
 										<td><h:inputText name="price" type="text" size="16"
-												value="price" required="true"
-												onkeyup="return ValidateNumber(this,value)" /></td>
-										<td><h:inputText type="button" value="刪除"
-												onclick="deleteRow(this)" /></td>
+												value="price"  /></td>
+
 									</tr>
+									
 									<tr>
 										<td><h:inputText name="productName" type="text" size="16"
-												value="productName" required="true" /></td>
+												value="#{addstores.product[2]}"  /></td>
 										<td><h:inputText name="price" type="text" size="16"
-												value="price" required="true"
-												onkeyup="return ValidateNumber(this,value)" /></td>
-										<td><h:inputText type="button" value="刪除"
-												onclick="deleteRow(this)" /></td>
-									</tr>
+												value="price"  /></td>
 
+									</tr>
+									
+									<tr>
+										<td><h:inputText name="productName" type="text" size="16"
+												value="#{addstores.product[3]}"  /></td>
+										<td><h:inputText name="price" type="text" size="16"
+												value="price"  /></td>
+
+									</tr>
+									
+									<tr>
+										<td><h:inputText name="productName" type="text" size="16"
+												value="#{addstores.product[4]}"  /></td>
+										<td><h:inputText name="price" type="text" size="16"
+												value="price" /></td>
+
+									</tr> 
 								</tbody>
 							</table>
-							<h:inputText type="button" value="增加" class="btn btn-default"
-								onclick="add_new_data()" />
-							<h:inputText type="button" value="減少" class="btn btn-default"
-								onclick="remove_data()" />
+							
 							<br />
 
 						</div>
@@ -232,49 +249,48 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<tr class="title">
 					<th colspan="2">其他資料</th>
 				</tr>
-				<td class="label01">店家服務類型:</td>
 
-				<div>
-
-					<table id="checkBoxTable" class="standard">
-						<tr>
-
-							<h3 style="margin-top: 0">Basic</h3>
-							<h:panelGrid columns="2" style="margin-bottom:10px"
-								cellpadding="5">
-								<p:outputLabel for="console" value="Console:" />
-								<p:selectOneRadio id="console" value="#{Addstores.type}">
-									<f:selectItem itemLabel="Xbox One" itemValue="a" />
-									<f:selectItem itemLabel="PS4" itemValue="b" />
-									<f:selectItem itemLabel="Wii U" itemValue="c" />
-								</p:selectOneRadio>
-							</h:panelGrid>
-
-
-
-
-
-							<!-- <h:selectOneRadio name="rtype" value="#{Addstores.type}">
-
-								<f:selectItem itemValue="a" itemLabel="便當" />
-								<f:selectItem itemValue="b" itemLabel="速食" />
-								<f:selectItem itemValue="c" itemLabel="日式" />
-								<f:selectItem itemValue="d" itemLabel="點心" />
-
-							</h:selectOneRadio> -->
-							
-						</tr>
-					</table>
-
-				</div>
-				<tr class="title">
-					<th colspan="2"></th>
-				</tr>
 				<tr>
+					<td class="label01">店家服務類型:</td>
 
-					<td style="padding-top: 1em;"><h:commandButton value="新增"
-							action="#{Addstores.stores}" /></td>
+
+					<td>
+
+						<div>
+
+							<table id="checkBoxTable" class="standard">
+
+								<tr>
+									<p:selectOneRadio id="console" value="#{addstores.type}">
+										<f:selectItem itemLabel="便當" itemValue="a" />
+										<f:selectItem itemLabel="速食" itemValue="b" />
+										<f:selectItem itemLabel="日式" itemValue="c" />
+										<f:selectItem itemLabel="點心" itemValue="d" />
+									</p:selectOneRadio>
+
+
+								</tr>
+
+								<tr>
+									<td></td>
+									<td style="padding-top: 1em;" align="center"><h:commandButton
+											value="新增" action="#{addstores.stores}" /></td>
+								</tr>
+
+
+
+
+
+							</table>
+
+						</div>
+
+					</td>
 				</tr>
+
+
+
+
 
 			</table>
 		</h:form>

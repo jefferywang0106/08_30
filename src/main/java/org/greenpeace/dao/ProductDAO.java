@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.greenpeace.model.Item;
 import org.greenpeace.model.Product;
+import org.greenpeace.model.Restaurant;
 
 public class ProductDAO extends Database{
 	Connection conn = null;	
@@ -146,4 +147,10 @@ public class ProductDAO extends Database{
 		}
 
 	}
+
+	
+	
+	
+	
+
 }

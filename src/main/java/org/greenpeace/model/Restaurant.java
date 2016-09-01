@@ -54,10 +54,9 @@ public class Restaurant implements Serializable {
 	}
 
 	public String getBrief() {
-		if (this.brief != null)
-			return this.brief;
-		else
-			return "可有可無";
+		 
+		return this.brief;
+		
 	}
 
 	public void setBrief(String brief) {
