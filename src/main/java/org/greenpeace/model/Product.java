@@ -101,5 +101,7 @@ public class Product implements Serializable {
 	public void setrId(int rId) {
 		this.rId = rId;
 	}
+	
+
 
 }

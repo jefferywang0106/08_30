@@ -73,8 +73,10 @@ public class Login{
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		String checkCode = (String) session.getAttribute("check_code");
 		session.setAttribute("accountExist",user.getAccount());
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("accountExist",user.getAccount() );
 
 		LOGGER.debug("checkCode : {}", checkCode);
+		
 
 		boolean ok = StringUtils.equals(checkCode, user.getCheckcode());
 		if (userExist && ok) {
@@ -85,6 +87,7 @@ public class Login{
 			this.message = "帳號密碼錯誤，請重新登入";
 			return null;
 		}
+		
 	}
 
 	/**

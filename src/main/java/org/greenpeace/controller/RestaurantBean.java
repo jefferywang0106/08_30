@@ -24,6 +24,12 @@ public class RestaurantBean implements Serializable {
 		}
 		return null;
 	}
+	
+	
+	
+	
+	
+	
 	public List<Restaurant> getRlist() {
 		return rlist;
 	}

@@ -39,24 +39,47 @@ public class AddstoresBean {
 	}
 
 	private Restaurant restaurant = new Restaurant();
+	
+	private Product product = new Product();
+	
+	
 
 	private String type;
-	
-	private String[]product = new String[5] ; 
+
+	private String[] name = new String[5];
+	private String[] price = new String[5];
+
+
 
 	
 	
-
-	public String[] getProduct() {
-		return product;
+	
+	public String[] getName() {
+		return name;
 	}
 
-	public void setProduct(String[] product) {
-		this.product = product;
+	public void setName(String[] name) {
+		this.name = name;
+	}
+
+	public String[] getPrice() {
+		return price;
+	}
+
+	public void setPrice(String[] price) {
+		this.price = price;
 	}
 
 	public Restaurant getRestaurant() {
 		return restaurant;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public String getType() {
@@ -71,57 +94,103 @@ public class AddstoresBean {
 		this.restaurant = restaurant;
 	}
 
-	
-	
-	
-	public void addproduct(){
+	public void stores() {
+
+		RestaurantDAO dao = new RestaurantDAO();
 		
 		
-for(int i=0;i<product.length;i++){
+		
+		if (type.equals("a")) {
+			restaurant.setRType("便當");
+		} else if (type.equals("b")) {
+			restaurant.setRType("速食");
+		} else if (type.equals("c")) {
+			restaurant.setRType("日式");
+		} else {
+			restaurant.setRType("點心");
+		}
+
+		
+		for(int i = 0;i <name.length;i++ ){
 			
-			LOGGER.debug(product[i]);
+			LOGGER.debug(name[i]);
 			
 			
 		}
 		
-	
 		
-	ProductDAO dao1 =new ProductDAO();
-	
-		dao1.insertProduct(product);
 		
-	}
-	
-	
-	
-	public void stores() {
-      
+		if (dao.checkR(restaurant.getPhone())) {
 			
-	
 		
+		List<Product> productlist =new ArrayList<Product>();
+			for(int i = 0; i < name.length ; i++){
+				
+				
+				Product newproduct = new Product();
+				
+				
+				
+				LOGGER.debug("12134");
+				
+				String productname = name[i];
+				String productprice = price[i];
+				
+				LOGGER.debug(productprice);
+				
+				
+				
+				
+				if(productname == null || "".equals(productname.trim())){
+					continue;
+				}
+				
+				if(productprice == null || "".equals(productprice.trim())){
+					continue;
+				}
+				
+				
+				newproduct.setName(productname);
+				newproduct.setPrice(Integer.parseInt(productprice));
+				productlist.add(newproduct);
+				
+				
 		
-		RestaurantDAO dao = new RestaurantDAO();
+				
+			}
+			
+			for(Product pro : productlist){
+			
+			LOGGER.debug(pro.getName());
+			}
+			
+			
+			
+			Restaurant r = new Restaurant();
+			r.setName(restaurant.getName());
+			r.setBrief(restaurant.getBrief());
+			r.setAddr(restaurant.getAddr());
+			r.setPhone(restaurant.getPhone());
+			r.setRType(restaurant.getRType());
+			r.setProducts(productlist);
+			
+			dao.addStore(r);
+			
+			
+			
 
-		System.out.println(type);
-		
-		 if(type.equals("a")){
-		 restaurant.setRType("便當");
-		 }else if(type.equals("b")){
-		 restaurant.setRType("速食");
-		 }else if(type.equals("c")){
-		 restaurant.setRType("日式");
-		 }else{
-		 restaurant.setRType("點心");
-		 }
+				
+			
+//				dao.addStore(restaurant);
 
-		 
-		
-		 
-		dao.addStore(restaurant);
+				System.out.println(restaurant.getName());
 
-		System.out.println(restaurant.getName());
+		
+		} else {
+			
+			LOGGER.debug("無法新增");
+
+		}
 
 	}
-
-	
 }

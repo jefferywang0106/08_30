@@ -1,5 +1,6 @@
 package org.greenpeace.dao;
 
+import java.io.BufferedReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,11 +9,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.greenpeace.controller.AddstoresBean;
 import org.greenpeace.model.Item;
 import org.greenpeace.model.Product;
 import org.greenpeace.model.Restaurant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProductDAO extends Database{
+	
+	private  final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 	Connection conn = null;	
 	Statement stmt = null;
 	PreparedStatement ps = null; 
@@ -40,14 +46,14 @@ public class ProductDAO extends Database{
 			}
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(), e);
 		}finally{
 			try {
 				rs.close();
 				ps.close();
 				conn.close();
 			} catch (Exception e2) {
-				e2.printStackTrace();
+				LOGGER.error(e2.getMessage(), e2);
 			}
 		}
 		return list;
@@ -58,9 +64,8 @@ public class ProductDAO extends Database{
 		List<Product> list = new ArrayList<Product>();
 		sql = "insert into product values(null,?,?,?)";
 		
-		try {
-			conn = getConnection();
-			ps = conn.prepareStatement(sql);
+		try(Connection conn = getConnection() ;PreparedStatement ps = conn.prepareStatement(sql)) {
+			  
 			for(Product p :pList){
 				ps.setString(1,p.getName());
 				ps.setInt(2, p.getPrice());
@@ -70,15 +75,9 @@ public class ProductDAO extends Database{
 			ps.executeBatch();
 			
 		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			try {
-				ps.close();
-				conn.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
+			LOGGER.error(e.getMessage(), e);
+		} 
+		
 		return list;
 		
 	}
@@ -121,36 +120,29 @@ public class ProductDAO extends Database{
 	}
 	
 	public void insertProductList(List<Product> list, int restaurant_id) {
-
-		try {
-
-			conn = getConnection();
+		String sql= "insert into product values (null, ?, ?, ?)" ;
+		try(Connection conn = getConnection() ;
+				PreparedStatement ps = conn.prepareStatement(sql)) {
 
 			for (Product p : list) {
 
-				ps = conn.prepareStatement("insert into product values (null, ?, ?, ?)");
+
 				ps.setString(1, p.getName());
 				ps.setInt(2, p.getPrice());
 				ps.setInt(3, restaurant_id);
 				ps.execute();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				ps.close();
-				conn.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-
+			LOGGER.error(e.getMessage(), e);
+		} 
+		
+		
+		
 	}
 
 	
 	
-	
+
 	
 
 }

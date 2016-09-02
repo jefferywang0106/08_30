@@ -196,9 +196,5 @@ Insert into PRODUCT (ID,NAME,PRICE,RESTAURANT_ID) values (110,'桂圓紫米粥',
 Insert into PRODUCT (ID,NAME,PRICE,RESTAURANT_ID) values (111,'蜜汁雞腿飯.',100,11);
 Insert into PRODUCT (ID,NAME,PRICE,RESTAURANT_ID) values (112,'脆皮鴨腿飯',100,11);
 Insert into PRODUCT (ID,NAME,PRICE,RESTAURANT_ID) values (113,'港式臘味飯',90,11);
-
-
-
-
-
+Insert into DEPOSIT (ID,DEPOSIT_CASH,DEPOSIT_TIME,MEMBER_ACCOUNT) values (1,300,to_timestamp('23-May -16 02.01.09.550000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'sun');
 

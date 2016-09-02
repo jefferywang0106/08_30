@@ -280,20 +280,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h:form>
 						<h:commandButton value="submit"
 							action="#{restaurantBean.allRestaurant}"></h:commandButton>
-								#{restaurantBean.rlist}
+					
 								
 								<h:dataTable value="#{restaurantBean.rlist}" var="restaurant">
 							<h:column>
 								<f:facet name="header">Name</f:facet>
 								<Button>#{restaurant.name}</Button>
+								
+				
 							</h:column>
 
 						</h:dataTable>
-
-
-
-
-
 
 
 
