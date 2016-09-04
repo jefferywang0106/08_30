@@ -51,6 +51,10 @@ public class OrderServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession se = request.getSession(true);
 		request.setCharacterEncoding("UTF-8");
+	
+		//設定session物件，命名為 se
+		
+		
 		
 		Order o = null;
 		OrderDAO oDao = new OrderDAO();

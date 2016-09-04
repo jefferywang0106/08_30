@@ -16,6 +16,8 @@ import org.greenpeace.dao.ProductDAO;
 import org.greenpeace.dao.RestaurantDAO;
 import org.greenpeace.dao.UserDAO;
 import org.greenpeace.dao.UserDAOImpl;
+import org.greenpeace.dao.ItemDAO;
+import org.greenpeace.model.Item;
 import org.greenpeace.model.Member;
 import org.greenpeace.model.Product;
 import org.greenpeace.model.Restaurant;
@@ -23,9 +25,7 @@ import org.hibernate.validator.constraints.Length;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Servlet implementation class AddServlet
- */
+
 
 @ManagedBean(name = "addstores")
 
@@ -94,9 +94,20 @@ public class AddstoresBean {
 		this.restaurant = restaurant;
 	}
 
+	
+	
+	
+	
+	
+	
+	
 	public void stores() {
 
 		RestaurantDAO dao = new RestaurantDAO();
+	
+		
+		
+		
 		
 		
 		
