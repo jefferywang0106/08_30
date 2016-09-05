@@ -52,34 +52,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			return false;
 		}
 	</script>
-	<!-- <script>
-	function add_new_data() {
-		var num = document.getElementById("mytable").rows.length;
-		var Tr = document.getElementById("mytable").insertRow(num);
-		Td = Tr.insertCell(Tr.cells.length);
-		Td.innerHTML = '<input name="name[]" type="text" size="16" required="">';
-		Td = Tr.insertCell(Tr.cells.length);
-		Td.innerHTML = '<input name="price[]" type="text" size="16" required="" onkeyup="return ValidateNumber(this,value)">';
-		Td = Tr.insertCell(Tr.cells.length);
-		Td.innerHTML =   '<input type="button" value="刪除" onclick="deleteRow(this)">';
-	}
-
-	function remove_data() {
-		var num = document.getElementById("mytable").rows.length;
-		if (num > 2)
-			document.getElementById("mytable").deleteRow(-1);
-	}
-
-	function deleteRow(r) {
-		var i = r.parentNode.parentNode.rowIndex;
-		var num = document.getElementById("mytable").rows.length;
-		if(num>2)
-			document.getElementById("mytable").deleteRow(i);
-	}
-</script> -->
+	
 
 
-	<!-- //FlexSlider -->
 </h:head>
 <body>
 
@@ -96,7 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							class="icon-bar"></span>
 					</button>
 					<div class="logo">
-						<a class="navbar-brand" href="Index.jsp"><b>餓揪訂餐 </b><span>Healthy
+						<a class="navbar-brand" href="index.xhtml"><b>餓揪訂餐 </b><span>Healthy
 								And Tasty Food</span></a>
 					</div>
 				</div>
@@ -105,11 +80,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="collapse navbar-collapse nav-wil"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li><a href="ServiceServelet">回首頁</a></li>
-						<li><a href="menu.jsp">我要訂餐</a></li>
-						<li class="active"><a href="order.jsp">發起訂餐</a></li>
-						<li><a href="contact.jsp">聯絡我們</a></li>
-						<li><a href="Index.jsp">登出</a></li>
+						<li><a href="service.xhtml">回首頁</a></li>
+						<li><a href="menu.xhtml">我要訂餐</a></li>
+						<li class="active"><a href="order.xhtml">發起訂餐</a></li>
+						<li><a href="contact.xhtml">聯絡我們</a></li>
+						<li><a href="index.xhtml">登出</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse --> </nav>
@@ -147,9 +122,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<td style="width: 150; text-align: center;" class="td01">價格</td>
 
 									</tr>
-									<!-- <%for(Product p:pList){ %> -->
+									
 									<tr>
 										
+										<td><h:inputText name="productName" type="text" size="16"
+												value="#{updatestores.name[0]}"  /></td>
+										<td><h:inputText name="price" type="text" size="16"
+												value="#{updatestores.price[0]}"  /></td>
+
+									</tr>
+									
+									<tr>
 										<td><h:inputText name="productName" type="text" size="16"
 												value="#{updatestores.name[1]}"  /></td>
 										<td><h:inputText name="price" type="text" size="16"
@@ -167,17 +150,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									
 									<tr>
 										<td><h:inputText name="productName" type="text" size="16"
-												value="#{updatestores.name[3]}"  /></td>
+												value="#{updatestores.name[3]}" /></td>
 										<td><h:inputText name="price" type="text" size="16"
-												value="#{updatestores.price[3]}"  /></td>
-
-									</tr>
-									
-									<tr>
-										<td><h:inputText name="productName" type="text" size="16"
-												value="#{updatestores.name[4]}"  /></td>
-										<td><h:inputText name="price" type="text" size="16"
-												value="#{updatestores.price[4]}" /></td>
+												value="#{updatestores.price[3]}" /></td>
 
 									
 									</tr>
@@ -197,7 +172,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					<td></td>
 					<td style="padding-top: 1em;" align="center"><h:commandButton
-							value="修改" action="#{addstores.stores}" /></td>
+							value="修改" action="#{updatestores.updatestore}" /></td>
 
 				</tr>
 				
