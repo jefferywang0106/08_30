@@ -18,6 +18,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 		
 		
+		
+		
+		
 	
 	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
@@ -25,6 +28,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+	
+	
+	
 	
 	
 	
@@ -280,14 +286,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h:form>
 						<h:commandButton value="submit"
 							action="#{restaurantBean.allRestaurant}"></h:commandButton>
-					
-								
-								<h:dataTable value="#{restaurantBean.rlist}" var="restaurant">
+
+
+						<h:dataTable value="#{restaurantBean.rlist}" var="restaurant">
 							<h:column>
-								<f:facet name="header">Name</f:facet>
-								<Button>#{restaurant.name}</Button>
-								
 				
+								<h:outputLink value="order-meal">
+									<h:outputText value="#{restaurant.name}" />
+									<f:param name="rId" value="#{restaurant.getId()}" />
+								</h:outputLink>
 							</h:column>
 
 						</h:dataTable>

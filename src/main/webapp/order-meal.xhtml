@@ -28,16 +28,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="css/flexslider.css" type="text/css"
 	media="screen" />
 <!-- <script defer src="js/jquery.flexslider.js"></script> -->
-<script type="text/javascript">
-	$(window).load(function() {
-		$('.flexslider').flexslider({
-			animation : "slide",
-			start : function(slider) {
-				$('body').removeClass('loading');
-			}
-		});
-	});
-</script>
+
 <script type="text/javascript">
 	function check(){
 		alert("請輸入正整數金額與有效時間 !");
@@ -49,52 +40,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		alert("請輸入有效時間 !");
 	}
 </script>
-<script type="text/javascript">
-	function ValidateNumber(e, pnumber)
-	{
-	    if (!/^\d{1,5}$/.test(pnumber))
-	    {
-	        e.value = /^\d{1,5}$/.exec(e.value);
-	    }
-	    return false;
-	}
-</script>
+
 <!-- //FlexSlider -->
 </h:head>
-<!-- <%if(request.getParameter("tCheck")!=null && request.getParameter("mCheck")!=null){%>
-	<body onload="check()">
-<%}else if(request.getParameter("tCheck")!=null){%>
-	<body onload="tCheck()">
-<%}else if(request.getParameter("mCheck")!=null){%>
-	<body onload="mCheck()">	
-<%}else{%>	
-	<body>
-<%} %>	
-	
-	
-<%
-	HttpSession se = request.getSession(true);	
-	if(se.getAttribute("account")==null){
-		response.sendRedirect("index.jsp");
-	}	
+<!--
 
-	//取得現在時間
-	long h = 3600*1000*1;
-	Date date = new Date(System.currentTimeMillis()+h);
-	String minDate = "";
-	String maxDate = "";
-	String timeStr = "";
 	
-	DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
-	DateFormat tf = new SimpleDateFormat("HH:mm"); 
-	
-	minDate = df.format(date);
-	timeStr = tf.format(date);
-	
-	String maxStr = "2592000000";
-	long max = Long.parseLong(maxStr);
-	date = new Date(System.currentTimeMillis()+max);
-	maxDate = df.format(date);
+
 	//
 	
 	Order o = null;
@@ -376,7 +328,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input type="submit" value="送出">
 				</form>
 			</div>
-			<%}%>
+			
 		</div>
 	</div>
 	<!-- //services -->
