@@ -10,6 +10,11 @@
 	<!-- for-mobile-apps -->
 	<script type="application/x-javascript">
 		
+		
+		
+		
+		
+		
   
   
   
@@ -27,27 +32,22 @@
  
  
  
+	
+	
+	
+	
+	
 	</script>
 	<!-- //for-mobile-apps -->
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 		media="all" />
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-	<!-- js -->
-	<script src="js/jquery-1.11.1.min.js"></script>
+
 	<!-- //js -->
 	<!-- FlexSlider -->
 	<link rel="stylesheet" href="css/flexslider.css" type="text/css"
 		media="screen" />
-	<script type="text/javascript">
-		$(window).load(function() {
-			$('.flexslider').flexslider({
-				animation : "slide",
-				start : function(slider) {
-					$('body').removeClass('loading');
-				}
-			});
-		});
-	</script>
+
 	<script type="text/javascript">
 		function check() {
 			alert("請輸入正整數金額與有效時間 !");
@@ -69,7 +69,7 @@
 	</script>
 	<!-- //FlexSlider -->
 </h:head>
-<body>
+<h:body>
 	<script>
 		(function(i, s, o, g, r, a, m) {
 			i['GoogleAnalyticsObject'] = r;
@@ -134,75 +134,85 @@
 		<div class="container">
 			<h3>發起訂餐</h3>
 			<div class="line"></div>
-			<h:outputLink value="updatestores">
-				<h:outputText value="修改店家菜單..." />
-				<f:param name="rId" value="#{restaurant.getId()}" />
-			</h:outputLink>
+				<h:form>
+			<h:commandLink value="修改店家..." action="#{pra.text}">
+	
+				<f:param name="rId" value="#{ordermeal.restaurant.id}" />
+				</h:commandLink>
+
+				</h:form>
+				<div class="bs-docs-example">
+					<table class="table table-bordered01">
+						<thead>
+							<tr>
+								<th></th>
+								<th>店家資訊</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>店名</td>
+								<td>#{ordermeal.restaurant.name}</td>
+							</tr>
+							<tr>
+								<td>電話</td>
+								<td>#{ordermeal.restaurant.phone}</td>
+							</tr>
+							<tr>
+								<td>地址</td>
+								<td>#{ordermeal.restaurant.addr}</td>
+							</tr>
+							<tr>
+								<td>店家服務類型</td>
+								<td>#{ordermeal.restaurant.RType}</td>
+							</tr>
+							<tr>
+								<td>備註</td>
+								<td>#{ordermeal.restaurant.brief}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="">
+
+				
 
 
 
-			<div class="bs-docs-example">
-				<table class="table table-bordered01">
-					<thead>
-						<tr>
-							<th></th>
-							<th>店家資訊</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>店名</td>
-							<td>#{ordermeal.restaurant.name}</td>
-						</tr>
-						<tr>
-							<td>電話</td>
-							<td>#{ordermeal.restaurant.phone}</td>
-						</tr>
-						<tr>
-							<td>地址</td>
-							<td>#{ordermeal.restaurant.addr}</td>
-						</tr>
-						<tr>
-							<td>店家服務類型</td>
-							<td>#{ordermeal.restaurant.RType}</td>
-						</tr>
-						<tr>
-							<td>備註</td>
-							<td>#{ordermeal.restaurant.brief}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="">
-			
-				<h:dataTable value="#{ordermeal.restaurant.products}" var="product" styleClass="table table-bordered01">
-					<h:column>
-						<f:facet name="header">產品清單</f:facet>
+
+					<h:dataTable value="#{ordermeal.restaurant.products}" var="product"
+						styleClass="table table-bordered01">
+						<h:column>
+							<f:facet name="header">產品清單</f:facet>
 						#{product.name}
 					</h:column>
-					<h:column>
-						<f:facet name="header">細項價格</f:facet>
+						<h:column>
+							<f:facet name="header">細項價格</f:facet>
 						#{product.price}
 					</h:column>
-				</h:dataTable>
-			
+					</h:dataTable>
 
-			</div>
-			<div class="contact-center">
-				<h:form>
-					<h:inputText type="date" name="endDate" value ="#{endTimeRemain}"
-						style="outline: none; width: 50%; height: 46px; outline: none; border: 1px solid #E3E2E2; background: none; text-align: center; color: #000"></h:inputText>
-					<h:inputText type="time" name="endTime" value="#{endDateRemain}"
-						style="outline: none; width: 50%; height: 46px; outline: none; border: 1px solid #E3E2E2; background: none; text-align: center; font-size: 15px; color: #000"></h:inputText>
-					<h:inputText type="text" name="endMoney" value="#{endTimeRemain}"
-						style="color: black" placeholder="截止金額"
-						onkeyup="return ValidateNumber(this,value)"></h:inputText>
-					<div class="clearfix"></div>
-					<h:inputTextarea type="text" name="info" placeholder="說明"
-						style="color: black"></h:inputTextarea>
-					<h:commandButton type="submit" value="送出"></h:commandButton>
-				</h:form>
-			</div>
+
+				</div>
+				<div class="contact-center">
+
+
+					<h:form>
+
+						<p:calendar id="popup" value="#{test.date10}" pattern="yyyy-MM-dd" />
+
+						<h:inputText type="text" name="endMoney" style="color: black"
+							a:placeholder="截止金額"></h:inputText>
+						<div class="clearfix"></div>
+						<h:inputTextarea type="text" name="info" a:placeholder="說明"
+							style="color: black"></h:inputTextarea>
+						<h:commandButton type="submit" value="送出" action="#{test.text}" />
+
+					</h:form>
+
+
+
+				</div>
 		</div>
 	</div>
 	<!-- //services -->
@@ -218,5 +228,5 @@
 		
 	</script>
 	<!-- //for bootstrap working -->
-</body>
+</h:body>
 </html>

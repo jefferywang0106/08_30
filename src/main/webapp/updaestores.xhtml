@@ -15,11 +15,27 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 	<script type="application/x-javascript">
 		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } 
 
 
+	
+	
+	
+	
+	
+	
+	
+	
 	</script>
 	<!-- //for-mobile-apps -->
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
@@ -33,17 +49,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- FlexSlider -->
 	<link rel="stylesheet" href="css/flexslider.css" type="text/css"
 		media="screen" />
-	<!-- <script defer src="js/jquery.flexslider.js"></script> -->
-	<script type="text/javascript">
-		$(window).load(function() {
-			$('.flexslider').flexslider({
-				animation : "slide",
-				start : function(slider) {
-					$('body').removeClass('loading');
-				}
-			});
-		});
-	</script>
+
 	<script type="text/javascript">
 		function ValidateNumber(e, pnumber) {
 			if (!/^\d{1,6}$/.test(pnumber)) {
@@ -52,7 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			return false;
 		}
 	</script>
-	
+
 
 
 </h:head>
@@ -100,7 +106,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<div id="header01">
-		<h:form  id="form01">
+		<h:form id="form01">
 			<div style="display: none">
 				<input type="hidden" name="form:hf:0" id="form:hf:0" />
 			</div>
@@ -108,78 +114,55 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<tr class="title">
 					<th colspan="2">產品設定</th>
 				</tr>
-				<tr>
-					<td class="label01"><span class="required">*</span>產品:</td>
-					<td>
-						<div style="float: left;">
 
-							<table class="table-bordered" id="mytable" width="320" border="1"
-								align="center" cellpadding="0" cellspacing="0">
-								<tbody>
-									<tr>
+				<td class="label01"><span class="required">*</span>產品:</td>
 
-										<td style="width: 150; text-align: center;" class="td01">名稱</td>
-										<td style="width: 150; text-align: center;" class="td01">價格</td>
+				<td>
 
-									</tr>
-									
-									<tr>
-										
-										<td><h:inputText name="productName" type="text" size="16"
-												value="#{updatestores.name[0]}"  /></td>
-										<td><h:inputText name="price" type="text" size="16"
-												value="#{updatestores.price[0]}"  /></td>
-
-									</tr>
-									
-									<tr>
-										<td><h:inputText name="productName" type="text" size="16"
-												value="#{updatestores.name[1]}"  /></td>
-										<td><h:inputText name="price" type="text" size="16"
-												value="#{updatestores.price[1]}"  /></td>
-
-									</tr>
-									
-									<tr>
-										<td><h:inputText name="productName" type="text" size="16"
-												value="#{updatestores.name[2]}"  /></td>
-										<td><h:inputText name="price" type="text" size="16"
-												value="#{updatestores.price[2]}"  /></td>
-
-									</tr>
-									
-									<tr>
-										<td><h:inputText name="productName" type="text" size="16"
-												value="#{updatestores.name[3]}" /></td>
-										<td><h:inputText name="price" type="text" size="16"
-												value="#{updatestores.price[3]}" /></td>
-
-									
-									</tr>
+					<div style="float: left;">
 
 
-								</tbody>
-							</table>
+						<h:dataTable value="#{pra.pro}" var="product"
+							styleClass="table-bordered" width="320" border="1"
+							cellpadding="0" cellspacing="0">
+							
+							<h:column>
+								<f:facet name="header">產品清單</f:facet>
+									<h:inputText value="#{product.name}"></h:inputText>
+								</h:column>
 
-						</div>
-					</td>
-				</tr>
-				
+							<h:column>
+								<f:facet name="header">細項價格</f:facet>
+									<h:inputText value="#{product.price}"></h:inputText>
+								</h:column>
+						</h:dataTable>
+
+					</div>
+
+				</td>
+
+
 				<tr class="title">
 					<th colspan="2">修改</th>
 				</tr>
 				<tr>
 
 					<td></td>
-					<td style="padding-top: 1em;" align="center"><h:commandButton
-							value="修改" action="#{updatestores.updatestore}" /></td>
+					<td style="padding-top: 1em;" align="center">
+					<h:commandButton
+							value="修改" action="#{update.updateproduct}">
+					<f:param name="productname" value="#{product.name}" />	
+					<f:param name="productprice" value="#{product.price}" />	
+								
+					</h:commandButton>
+					</td>
 
 				</tr>
-				
+
 			</table>
 		</h:form>
 	</div>
-	
+
 	<!-- //single -->
 	<!--footer-->
 	<div class="footer-bottom">

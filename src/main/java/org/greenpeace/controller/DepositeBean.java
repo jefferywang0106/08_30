@@ -48,7 +48,7 @@ public class DepositeBean implements Serializable{
 	
 	private List<Deposit> list;
 	public List<Deposit> queryByMemberAccount() {
-		list = new DepositDAO().queryByMemberAccount(account1);
+		list = new DepositDAO().queryByMemberAccount(null);
 		for(Deposit Dep: list){
 			
 			

@@ -13,6 +13,12 @@
  		<error-code>403</error-code>
  		<location>/error/general-error-403.html</location>
  	</error-page>
+ 	<error-page> 
+ 		<error-code>500</error-code>
+ 		<location>/error/general-error-500.html</location>
+ 	</error-page>
+ 	
+ 	
   <locale-encoding-mapping-list>
     <locale-encoding-mapping>
       <locale>zh_TW</locale>
