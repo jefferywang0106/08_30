@@ -21,6 +21,27 @@ public class Product implements Serializable {
 	private String name;
 
 	private int price;
+	
+	boolean editable;
+
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+	
+	
+	public Product(String name, int price) {
+		
+		this.name = name;
+		this.price = price;
+		
+	}
+	
+	
 
 	//bi-directional many-to-one association to Item
 	private List<Item> items;

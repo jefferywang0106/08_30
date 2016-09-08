@@ -23,11 +23,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 		
 		
+		
+		
 	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } 
 
 
+	
+	
 	
 	
 	
@@ -125,37 +129,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<h:dataTable value="#{pra.pro}" var="product"
 							styleClass="table-bordered" width="320" border="1"
 							cellpadding="0" cellspacing="0">
-							
+
 							<h:column>
 								<f:facet name="header">產品清單</f:facet>
-									<h:inputText value="#{product.name}"></h:inputText>
-								</h:column>
+
+								<h:inputText value="#{product.name}"
+									rendered="#{product.editable}" />
+								<h:outputText value="#{product.name}"
+									rendered="#{not product.editable}" />
+
+
+							</h:column>
 
 							<h:column>
 								<f:facet name="header">細項價格</f:facet>
-									<h:inputText value="#{product.price}"></h:inputText>
-								</h:column>
+
+								<h:inputText value="#{product.price}"
+									rendered="#{product.editable}" />
+								<h:outputText value="#{product.price}"
+									rendered="#{not product.editable}" />
+
+							</h:column>
+
+
+							<h:column>
+
+								<f:facet name="header">Action</f:facet>
+
+								<h:commandLink value="Edit"
+									action="#{update.editAction(product)}"
+									rendered="#{not product.editable}" />
+
+							</h:column>
 						</h:dataTable>
-
 					</div>
-
 				</td>
-
-
 				<tr class="title">
 					<th colspan="2">修改</th>
 				</tr>
 				<tr>
-
 					<td></td>
-					<td style="padding-top: 1em;" align="center">
-					<h:commandButton
+					<td style="padding-top: 1em;" align="center"><h:commandButton
 							value="修改" action="#{update.updateproduct}">
-					<f:param name="productname" value="#{product.name}" />	
-					<f:param name="productprice" value="#{product.price}" />	
-								
-					</h:commandButton>
-					</td>
+						</h:commandButton></td>
 
 				</tr>
 
