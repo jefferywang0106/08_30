@@ -1,48 +1,29 @@
 package org.greenpeace.controller;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
 import org.greenpeace.dao.ProductDAO;
-import org.greenpeace.dao.RestaurantDAO;
-import org.greenpeace.model.Item;
 import org.greenpeace.model.Product;
-import org.greenpeace.model.Restaurant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import scala.annotation.meta.setter;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
-
-import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import org.greenpeace.dao.ProductDAO;
-import org.greenpeace.model.Product;
-
-
-
-@ManagedBean(name="update")
+@ManagedBean(name = "plist")
 @SessionScoped
-
 public class updatestores {
-
-
-	private List<Product>  plist ;
-	private static final Logger LOGGER = LoggerFactory.getLogger(updatestores.class);
-
-
 	
+	private static final Logger LOGGER = LoggerFactory.getLogger(updatestores.class);
 	ProductDAO productdao = new ProductDAO();
 	
-
+	private List<Product> pro;
 	
-
+	private Product id;
 	private String name ;
 	private String price;
 	
@@ -67,33 +48,106 @@ public class updatestores {
 	}
 
 
+	public Product getId() {
+		return id;
+	}
 
+
+	public void setId(Product id) {
+		this.id = id;
+	}
+
+
+	public List<Product> getPro() {
+		return pro;
+	}
+
+
+	public void setPro(List<Product> pro) {
+		this.pro = pro;
+	}
+
+
+
+
+	public String text(){
 	
 	
-	public String updateproduct(){
+	String t  ;  
+	
+	
+	FacesContext fc = FacesContext.getCurrentInstance();
+    Map<String,String> params = 
+    fc.getExternalContext().getRequestParameterMap();
+     t=  params.get("rId"); 
+	
+     pro = productdao.getProductByRestaurantId(Integer.parseInt(t));
+   //for(List的model 宣告for迴圈裡的變數 ： List)
+     
+     
+     
+//     name = params.get("name");
+//     price = params.get("price");
+//     
+//     int x = Integer.parseInt(price);
+     
+     
+     
+     
+     for(Product p : pro){  
+     
+    	   	 
+    	 
+    	 LOGGER.debug(p.getName());
+     }
+     
+    System.out.println(t);
+    
+	return "updaestores.xhtml";
+	}
+	
+	
+	
+	
+	public String upDateProduct(){
 
-	LOGGER.debug("null: {}",plist);
-		    
-			//get all existing value but set "editable" to false 
-			for (Product order : plist){
-				order.setEditable(false);
+		LOGGER.debug("null: {}",pro);
+			    
+				//get all existing value but set "editable" to false 
+				for (Product product : pro){
+					product.setEditable(false);
+				}
+				
+			
+				productdao.update(pro);
+				
+				
+				
+				
+				
+				//return to order.xhtml page
+				return "order.xhtml";
+				
 			}
 			
-			//return to order.xhtml page
-			return "order.xhtml";
-			
-		}
-		
-		public String editAction(Product order) {
-		    
-			LOGGER.debug("123");
-			
-			order.setEditable(true);
-			return null;
-		}
-	 
-		
+			public String editAction(Product order) {
+			    
+				LOGGER.debug("123");
+				
+				order.setEditable(true);
+				return null;
 			}
 	
+	
+	
+	
+	
+	
+	
+	
 
+	
+	
+	
 
+}
