@@ -86,13 +86,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse nav-wil"
 					id="bs-example-navbar-collapse-1">
+					
+					<h:form>
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="ServiceServelet">回首頁</a></li>
+						<li><h:commandLink action="#{loginText.returnlogin}" value="回首頁">
+									<f:param name="pageId" value="1" />
+								</h:commandLink></li>
 						<li><a href="menu.xhtml">我要訂餐</a></li>
 						<li><a href="order.xhtml">發起訂餐</a></li>
 						<li><a href="contact.xhtml">聯絡我們</a></li>
-						<li><a href="index.xhtml">登出</a></li>
+						<li><h:commandLink action="#{logoutCtrl.logout}" value="登出">
+									<f:param name="pageId" value="1" />
+								</h:commandLink></li>
 					</ul>
+					</h:form>
+					
+					
 				</div>
 				<!-- /.navbar-collapse --> </nav>
 			</div>
@@ -102,7 +111,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- services -->
 	<div class="services">
 		<div class="container">
-			<h3>admin的個人紀錄   (餘額 : 10000)</h3>
+			<h3><h:outputText value="#{sessionScope.account}" />
+				的個人紀錄 (餘額 : )</h3>
 			<div class="line"></div>
 			<div class="grid_3 grid_5">
 				<div class="bs-example bs-example-tabs" role="tabpanel"
@@ -119,148 +129,138 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							id="dropdown2-tab" data-toggle="tab" aria-controls="profile">查詢發起狀態</a></li>
 						<li role="presentation" class="dropdown"><a href="#"
 							id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown"
-							aria-controls="myTabDrop1-contents">管理者權限 <span class="caret"></span></a></li>
+							aria-controls="myTabDrop1-contents">管理者權限 <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu"
 								aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
 								<li><a href="card.xhtml">儲值</a></li>
 								<li><a href="take-meal.xhtml">確認取餐</a></li>
-							</ul>
+							</ul></li>
 					</ul>
 					<div id="myTabContent" class="tab-content">
 						<div role="tabpanel" class="tab-pane fade in active" id="home"
 							aria-labelledby="home-tab">
 							<div class="bs-docs-example">
 								<br />
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>序號</th>
-											<th>儲值金額</th>
-											<th>儲值日期</th>
-										</tr>
-									</thead>
-									<tbody>
-										<!-- for迴圈跑Deposit資料 -->
-										<!-- <%
-											ArrayList<Deposit> list = null;
-															if(request.getAttribute("depositlist") != null){
-																list = (ArrayList<Deposit>)request.getAttribute("depositlist");
-															} else {
-																list = new ArrayList<Deposit>();
-															}
-														
-															int index = 1;
-															for(Deposit data : list){
-										%>
-										<tr>
-											<td><%=index%></td>
-											<td><%=data.getDepositCash()%></td>
-											<td><%=data.getTime()%></td>
-										</tr>
-										<%
-											index++;
-															}
-										%> -->
-									</tbody>
-								</table>
+								
+								
+								
+								
+								<h:dataTable value="#{depositcash.rlist}" var="deposit"
+									class="table table-hover">
+
+									<h:column>
+										<f:facet name="header">序號</f:facet>
+													#{deposit.id}
+      								 </h:column>
+									<h:column>
+										<f:facet name="header">儲值金額</f:facet>
+                                 
+                                 #{deposit.depositCash}
+                                  </h:column>
+									<h:column>
+										<f:facet name="header">儲值日期</f:facet>
+                                #{deposit.depositTime}
+                                    </h:column>
+								</h:dataTable>
 							</div>
 						</div>
 						<div role="tabpanel" class="tab-pane fade" id="profile"
 							aria-labelledby="profile-tab">
 							<div class="bs-docs-example">
 								<br />
-								<table class="table table-bordered">
-									<thead>
-										<tr>
-											<th>編號</th>
-											<th>品項</th>
-											<th>數量</th>
-											<th>消費金額</th>
-											<!--                             <th>餘額</th> -->
-											<th>消費日期</th>
-										</tr>
-									</thead>
-									<tbody>
-										
-									</tbody>
-								</table>
+								<h:dataTable value="#{depositorder.osuper}" var="osuper"
+									styleClass="table table-bordered">
+
+									<h:column>
+										<f:facet name="header">編號</f:facet>    				
+      				                    #{osuper.id}
+      				                    </h:column>
+									<h:column>
+										<f:facet name="header">品項</f:facet>
+                                        #{osuper.product_name}
+                                        </h:column>
+									<h:column>
+										<f:facet name="header">數量</f:facet>
+                                        #{osuper.counts}
+                                        </h:column>
+									<h:column>
+										<f:facet name="header">消費金額</f:facet>
+                                        #{osuper.money}
+                                        </h:column>
+									<h:column>
+										<f:facet name="header">消費日期</f:facet>
+                                        #{osuper.consume_date}
+                                      
+                                    </h:column>
+
+								</h:dataTable>
+
+
 							</div>
 
 						</div>
 						<div role="tabpanel" class="tab-pane fade" id="dropdown1"
 							aria-labelledby="dropdown1-tab">
 							<div class="bs-docs-example">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>訂單編號</th>
-											<th>發起人</th>
-											<th>下定日期</th>
-											<th>下定店家</th>
-											<th>訂單狀態</th>
-										</tr>
-									</thead>
-									<tbody>
-										<!-- for迴圈跑訂單狀態資料 -->
-										<!-- <%
-											ArrayList<OrderSuper> orderList = null;
-															if(request.getAttribute("orderList") != null){
-																orderList = (ArrayList<OrderSuper>)request.getAttribute("orderList");
-															} else {
-																orderList = new ArrayList<OrderSuper>();
-															}
-														
-															for(OrderSuper data : orderList){
-										%>
-										<tr>
-											<td><%=data.getId()%></td>
-											<td><%=data.getOrder_member()%></td>
-											<td><%=data.getOrder_date()%></td>
-											<td><%=data.getRestaurant_name()%></td>
-											<td><%=data.getStatus()%></td>
-										</tr>
-										<%
-											}
-										%> -->
-									</tbody>
-								</table>
+
+								<h:dataTable value="#{depositstatus.status}" var="status"
+									styleClass="table">
+
+									<h:column>
+										<f:facet name="header">訂單編號</f:facet>  				
+      				
+                                 #{status.id}
+                                 </h:column>
+									<h:column>
+										<f:facet name="header">發起人</f:facet>
+                                 #{status.memberAccount}
+                                 </h:column>}
+                                 	<h:column>
+										<f:facet name="header">下定日期</f:facet>
+
+
+									</h:column>
+									<h:column>
+										<f:facet name="header">下定店家</f:facet>
+										 #{status.restaurantName}
+                                 
+                                    </h:column>
+									<h:column>
+										<f:facet name="header">訂單狀態</f:facet>
+										#{status.status}
+										</h:column>
+								</h:dataTable>
+
 							</div>
 						</div>
-						
+
 						<div role="tabpanel" class="tab-pane fade" id="dropdown2"
 							aria-labelledby="dropdown2-tab">
 							<div class="bs-docs-example">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>訂單編號</th>
-											<th>發起日期</th>
-											<th>發起店家</th>
-											<th>訂單狀態</th>
-										</tr>
-									</thead>
-									<tbody>
-										<!-- <%
-										int count = 1;
-										List<Order> myOrderList = null;
-										if(request.getAttribute("myOrderList")!=null){
-											myOrderList = (ArrayList<Order>)request.getAttribute("myOrderList");
-										}else{
-											myOrderList = new ArrayList<Order>();
-										}
-										for(Order o:myOrderList){
-										%>
-										<tr>
-											<td><%=o.getId()%></td>
-											<td><%=o.getBeginTimeStr()%></td>
-											<td><%=o.getRestaurantName()%></td>
-											<td><%=o.getStatus()%></td>
-										</tr>
-										<%
-											count++;}
-										%> -->
-									</tbody>
-								</table>
+
+
+								<h:dataTable value="#{depositstatus.status}" var="status"
+									styleClass="table">
+
+									<h:column>
+										<f:facet name="header">訂單編號</f:facet>  				
+      				
+                                 #{status.id}
+                                 </h:column>
+									<h:column>
+										<f:facet name="header">發起日期</f:facet>
+                                 #{status.beginTime}
+                                 
+                                 </h:column>
+									<h:column>
+										<f:facet name="header">發起店家</f:facet>
+                                 #{status.restaurantName}
+                                 </h:column>
+									<h:column>
+										<f:facet name="header">訂單狀態</f:facet>
+                                 #{status.status}
+                                    </h:column>
+								</h:dataTable>
 							</div>
 						</div>
 						

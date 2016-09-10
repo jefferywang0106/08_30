@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,7 +27,7 @@ public class OrderDAO extends Database{
 			sql = "insert into orders values(null,?,?,?,?,?,'進行中',?,?)";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1,o.getRestaurantId());
-			ps.setTimestamp(2, o.getBeginTime());
+			ps.setTimestamp(2, new Timestamp(new Date().getTime()));
 			ps.setTimestamp(3, o.getEndTime());
 			ps.setInt(4,o.getEndMoney());
 			ps.setString(5,o.getMemberAccount());

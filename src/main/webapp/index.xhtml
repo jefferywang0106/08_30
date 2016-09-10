@@ -110,13 +110,21 @@ function hideURLbar() {
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse nav-wil"
 					id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<!-- <% if (se.getAttribute("account") != null) { %> -->
-						<li class="active"><a href="ServiceServelet">回首頁</a></li>
+					<h:form>
+					
+					 <ul class="nav navbar-nav">
+						<li><h:commandLink action="#{loginText.returnlogin}" value="回首頁">
+									<f:param name="pageId" value="1" />
+								</h:commandLink></li>
 						<li><a href="menu.xhtml">我要訂餐</a></li>
 						<li><a href="order.xhtml">發起訂餐</a></li>
-						<li><a href="contact.xhtml">聯絡我們</a></li>
-					</ul>
+						<li class="active"><a href="contact.xhtml">聯絡我們</a></li>
+                       <li><h:commandLink action="#{logoutCtrl.logout}" value="登出">
+									<f:param name="pageId" value="1" />
+								</h:commandLink></li>
+					  </ul>
+					  
+					  </h:form>
 				</div>
 				<!-- /.navbar-collapse --> </nav>
 			</div>
@@ -213,20 +221,26 @@ function hideURLbar() {
 										<div class="sign-in-form">
 											<div class="in-form Personal">
 												<p>歡迎，請輸入以下詳細信息才能註冊。</p>
-												<h:form method="post" action="RegistrationServlet">
-													<input type="text" name="newaccount" placeholder="帳號"
-														onkeyup="chinese_onkeyup" />
-													<input type="email" name="email" class="textbox"
-														placeholder="信箱" />
-													<input type="password" name="newpassword" placeholder="密碼" />
-													<input type="password" name="again" placeholder="再次輸入密碼" />
+												<h:form>
+													<h:inputText type="text" name="newaccount"
+														a:placeholder="帳號" onkeyup="chinese_onkeyup"
+														value="#{RegistrationCtrl.member.account}"></h:inputText>
+													<h:inputText type="email" name="email" class="textbox"
+														a:placeholder="信箱"
+														value="#{RegistrationCtrl.member.email}"></h:inputText>
+													<h:inputText type="password" name="newpassword"
+														a:placeholder="密碼"
+														value="#{RegistrationCtrl.member.password}"></h:inputText>
+													<h:inputText type="password" name="again"
+														a:placeholder="再次輸入密碼"></h:inputText>
 													<div class="c
 													heck">
 														<label class="checkbox"> <input type="checkbox"
 															name="checkbox" /><i> </i>我同意使用左邊條款
 														</label>
 													</div>
-													<h:commandButton value="送出" />
+													<h:commandButton value="送出"
+														action="#{RegistrationCtrl.Registration}"></h:commandButton>
 												</h:form>
 											</div>
 										</div>

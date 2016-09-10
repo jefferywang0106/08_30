@@ -1,22 +1,24 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
 <h:head>
 	<title>餓揪訂餐網站</title>
-	<!-- for-mobile-apps -->
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords"
-		content="Deliccio Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-	<script type="application/x-javascript">
-		 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } 
-	</script>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport"
+			content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+	</f:facet>
+	<meta name="keywords" content="" />
+
+
 	<!-- //for-mobile-apps -->
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 		media="all" />
@@ -24,31 +26,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- js -->
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=UnifrakturMaguntia'
+		rel='stylesheet' type='text/css'></link>
+	<link
+		href='https://fonts.googleapis.com/css?family=Open+Sans:600,600italic,700,400'
+		rel='stylesheet' type='text/css'></link>
 	<!-- FlexSlider -->
 	<link rel="stylesheet" href="css/flexslider.css" type="text/css"
 		media="screen" />
-	<!-- <script defer src="js/jquery.flexslider.js"></script> -->
-	<script type="text/javascript">
-		$(window).load(function() {
-			$('.flexslider').flexslider({
-				animation : "slide",
-				start : function(slider) {
-					$('body').removeClass('loading');
-				}
-			});
-		});
-	</script>
-	<!-- //FlexSlider -->
+	<!-- <h:outputStylesheet library="css" name="css/flexslider.css" /> -->
+
+	<!-- <h:outputScript library="js" name="jquery.flexslider.js" /> -->
+	<!-- <script src="js/jquery.flexslider.js"></script>
+ -->
+
 
 </h:head>
 
-<body>
-	<!-- <%
-	HttpSession se = request.getSession();
-	if(se.getAttribute("account")==null){
-		response.sendRedirect("Index.jsp");
-	}
-%> -->
+<h:body>
+
 	<!-- banner -->
 	<div class="banner1">
 		<div class="container">
@@ -87,57 +83,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="menu-page">
 		<div class="container">
 			<div class="menu-title">
-				<h3>
-					<!-- <%=request.getAttribute("restaurantName") %>   -->
-					訂購
-				</h3>
+				<h3>訂購</h3>
 				<div class="line"></div>
-				<br />
+				<br></br>
 
 
 			</div>
 
 			<div class="bs-docs-example">
 
-				<h:form action="CheckOutServlet" method="post">
-
-					<table class="table table-hover">
-						<tr>
-							<th>名稱</th>
-							<th>價錢</th>
-							<th>數量</th>
-							<th></th>
-						</tr>
-						<tbody>
-
-							<!-- <%
-							List<Start> list = (List<Start>) request.getAttribute("startList");
-							for(Start data : list) {
-						%> -->
-							<tr>
-								<td>
-									<!-- 	<%=data.getProduct_name() %> --> <h:inputText
-										name="productName" value="productName" /> <h:inputText
-										name="item_id" value="item_id" /> <h:inputText
-										name="order_id" value="order_id" />
-								</td>
-								<td>
-									<!-- <%=data.getPrice() %> --> <h:inputText name="price"
-										value="price" />
-								</td>
-								<td class="qtyColumn"><h:inputText value="0" min="0"
-										max="99" name="counts" required="" /></td>
-								<td></td>
-
-							</tr>
+				<h:form  >
 
 
-						</tbody>
+					<h:dataTable value="#{omenu.pro}" var="pro"
+						class="table table-hover">
 
-					</table>
+						<h:column>
+							<f:facet name="header">名稱</f:facet>
+													#{pro.data.name}
+      								 </h:column>
+						<h:column>
+							<f:facet name="header">價錢</f:facet>
+                                 
+                                 #{pro.data.price}
+                                  </h:column>
+						<h:column>
+							<f:facet name="header">數量</f:facet>
+							
+							<h:outputLabel for="minMax" />
+							<p:spinner id="minMax" value="#{pro.number}" min="0" max="99" />
+
+						</h:column>
+					</h:dataTable>
 
 					<div class="search">
-						<h:commandButton value="結帳" />
+						<h:commandButton type="submit" value="結帳" action="#{cpmoney.compareMoney(omenu.pro)}"></h:commandButton>
+
 					</div>
 				</h:form>
 			</div>
@@ -157,5 +138,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 	</script>
 	<!-- //for bootstrap working -->
-</body>
+</h:body>
 </html>

@@ -27,15 +27,12 @@ import org.slf4j.LoggerFactory;
  */
 @ManagedBean(name = "loginText")
 
+public class Login {
 
-
-public class Login{
-
-
-	
-	
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(Login.class);
+	FacesContext context = FacesContext.getCurrentInstance();
+	HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 
 	/** The user. */
 	private User user = new User();
@@ -62,6 +59,25 @@ public class Login{
 	 *
 	 * @return the string
 	 */
+
+	public String returnlogin() {
+
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+
+		String account = (String) session.getAttribute("account");
+		if (account.equals("admin")) {
+			return "admin-services.xhtml";
+
+		} else if(session.getAttribute("account").equals("null")){
+			this.message = "";
+			return "index.xhtml";
+		}else{
+			return "service.xhtml";
+		}
+
+	}
+
 	public String login() {
 		LOGGER.debug("login!!");
 		LOGGER.debug("username: {}", user.getAccount());
@@ -72,22 +88,28 @@ public class Login{
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		String checkCode = (String) session.getAttribute("check_code");
-		session.setAttribute("accountExist",user.getAccount());
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("accountExist",user.getAccount() );
+		session.setAttribute("accountExist", user.getAccount());
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("accountExist", user.getAccount());
 
 		LOGGER.debug("checkCode : {}", checkCode);
-		
 
 		boolean ok = StringUtils.equals(checkCode, user.getCheckcode());
+
 		if (userExist && ok) {
-			this.message = "";
-			return "service.xhtml";
+
+			if (user.getAccount().equals("admin")) {
+				return "admin-services.xhtml";
+
+			} else {
+				this.message = "";
+				return "service.xhtml";
+			}
 		} else {
 			LOGGER.debug("帳號密碼錯誤，請重新登入");
 			this.message = "帳號密碼錯誤，請重新登入";
 			return null;
 		}
-		
+
 	}
 
 	/**
@@ -101,6 +123,8 @@ public class Login{
 		UserDAO dao = new UserDAOImpl();
 
 		Member member = dao.getUserByAccount(user.getAccount(), user.getPassword());
+		session.setAttribute("account", user.getAccount());
+
 		if (member != null) {
 			return true;
 		} else {

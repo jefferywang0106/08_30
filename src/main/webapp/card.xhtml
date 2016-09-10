@@ -8,10 +8,6 @@
 <h:head>
 <title>餓揪訂餐網站</title>
 <!-- for-mobile-apps -->
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Deliccio Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
@@ -22,7 +18,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //js -->
 <!-- FlexSlider -->
 <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
-<!-- <script defer src="js/jquery.flexslider.js"></script> -->
 <script type="text/javascript">
 						$(window).load(function(){
 						  $('.flexslider').flexslider({
@@ -48,14 +43,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </h:head>
 	
 <body>
-<!-- <%
-	HttpSession se = request.getSession();
-	if(se.getAttribute("account")==null){
-		response.sendRedirect("Index.jsp");
-	}else if(!((String)se.getAttribute("mtype")).equals("高級會員")){
-		response.sendRedirect("ServiceServelet");
-	}
-%> -->
 <!-- banner -->
 	<div class="banner1">
 		<div class="container">
@@ -63,12 +50,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<nav class="navbar navbar-default">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
-					  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					  <h:commandButton type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
-					  </button>
+					  </h:commandButton>
 						<div class="logo">
 							<a class="navbar-brand" href="index.xhtml"><b>餓揪訂餐 </b><span>Healthy And Tasty Food</span></a>
 						</div>
@@ -76,13 +63,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
-					  <ul class="nav navbar-nav">
-						<li class="active"><a href="ServiceServelet">回首頁</a></li>
+					  <h:form>
+					
+					 <ul class="nav navbar-nav">
+						<li><h:commandLink action="#{loginText.returnlogin}" value="回首頁">
+									<f:param name="pageId" value="1" />
+								</h:commandLink></li>
 						<li><a href="menu.xhtml">我要訂餐</a></li>
 						<li><a href="order.xhtml">發起訂餐</a></li>
-						<li><a href="contact.xhtml">聯絡我們</a></li>
-                        <li><a href="index.xhtml">登出</a>  </li> 
+						<li class="active"><a href="contact.xhtml">聯絡我們</a></li>
+                       <li><h:commandLink action="#{logoutCtrl.logout}" value="登出">
+									<f:param name="pageId" value="1" />
+								</h:commandLink></li>
 					  </ul>
+					  
+					  </h:form>
 					</div><!-- /.navbar-collapse -->
 				</nav>
 			</div>
@@ -96,20 +91,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 				<h3>管理員儲值系統</h3>
 				<div class="line"></div> 
-				</div>
+		</div>
 				<div class="leave-a-comment">
-				<h:form href="CardServlet">
-                <div style="text-align:center">
-                
-					<h:inputText name="account" value="account" style="color:#000" placeholder="會員帳號" required="" />
-					<br />
-					<h:inputText name="cash" value="cash" style="color:#000" placeholder="金額" onkeyup="return ValidateNumber(this,value)" required="" />
-					<!--<input type="text" value="管理者密碼" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '管理者密碼';}" required="">-->
-                    <!-- <textarea type="text" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '備註';}" required>備註</textarea>-->
-					<br />
-					<h:commandButton value="儲值" />
-                    </div>
+				<h:form method="post" action="CardServlet">
+                <fieldset style="text-align:center">
+                <legend></legend>
+					<h:inputText type="text" name="account" style="color:#000" a:placeholder="會員帳號" value="#{CardCtrl.member.account}" ></h:inputText>
+					<br/>
+					<h:inputText type="text" name="cash"  style="color:#000" a:placeholder="金額" onkeyup="return ValidateNumber(this,value)" value="#{CardCtrl.member.cash}"/>
+					<br/>
+					<h:commandButton type="submit" value="儲值" action="#{CardCtrl.Card}" ></h:commandButton>
+                    </fieldset>
 				</h:form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -121,7 +115,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<p>&copy;  - Copyright 2016© All rights reserved.</p>					
 		</div>					
 		</div>
-	</div>
 	</div>
 <!--//footer-->	
 <!-- for bootstrap working -->

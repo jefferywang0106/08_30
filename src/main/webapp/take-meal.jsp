@@ -37,7 +37,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	HttpSession se = request.getSession();
 	if(se.getAttribute("account")==null){
-		response.sendRedirect("Index.jsp");
+		response.sendRedirect("index.jsp");
 	}else if(!((String)se.getAttribute("mtype")).equals("高級會員")){
 		response.sendRedirect("ServiceServelet");
 	}
@@ -100,7 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<span class="icon-bar"></span>
 					  </button>
 						<div class="logo">
-							<a class="navbar-brand" href="Index.jsp"><b>餓揪訂餐 </b> <span>Healthy And Tasty Food</span></a>
+							<a class="navbar-brand" href="index.jsp"><b>餓揪訂餐 </b> <span>Healthy And Tasty Food</span></a>
 						</div>
 					</div>
 
@@ -111,7 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="menu.jsp">我要訂餐</a></li>
 						<li><a href="order.jsp">發起訂餐</a></li>
 						<li><a href="contact.jsp">聯絡我們</a></li> 
-                        <li><a href="Index.jsp">登出</a>  </li> 
+                        <li><a href="index.jsp">登出</a>  </li> 
 					  </ul>
 					</div><!-- /.navbar-collapse -->
 				</nav>

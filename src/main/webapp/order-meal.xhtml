@@ -10,32 +10,10 @@
 	<!-- for-mobile-apps -->
 	<script type="application/x-javascript">
 		
-		
-		
-		
-		
-		
-  
-  
-  
-  
-  
-  
-  
   addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
   function hideURLbar(){ window.scrollTo(0,1); } 
  
  
- 
- 
- 
- 
- 
- 
-	
-	
-	
-	
 	
 	</script>
 	<!-- //for-mobile-apps -->
@@ -81,7 +59,6 @@
 			a.src = g;
 			m.parentNode.insertBefore(a, m)
 		});
-
 		function hide_tr() {
 			alert("hide");
 			var result_style = document.getElementById('dyn_tr').style;
@@ -134,85 +111,78 @@
 		<div class="container">
 			<h3>發起訂餐</h3>
 			<div class="line"></div>
-				<h:form>
-			<h:commandLink value="修改店家..." action="#{plist.text}">
-	
-				<f:param name="rId" value="#{ordermeal.restaurant.id}" />
+			<h:form>
+				<h:commandLink value="修改店家..." action="#{plist.text}">
+
+					<f:param name="rId" value="#{ordermeal.restaurant.id}" />
 				</h:commandLink>
 
+			</h:form>
+			<div class="bs-docs-example">
+				<table class="table table-bordered01">
+					<thead>
+						<tr>
+							<th></th>
+							<th>店家資訊</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>店名</td>
+							<td>#{ordermeal.restaurant.name}</td>
+						</tr>
+						<tr>
+							<td>電話</td>
+							<td>#{ordermeal.restaurant.phone}</td>
+						</tr>
+						<tr>
+							<td>地址</td>
+							<td>#{ordermeal.restaurant.addr}</td>
+						</tr>
+						<tr>
+							<td>店家服務類型</td>
+							<td>#{ordermeal.restaurant.RType}</td>
+						</tr>
+						<tr>
+							<td>備註</td>
+							<td>#{ordermeal.restaurant.brief}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="">
+
+
+				<h:dataTable value="#{ordermeal.restaurant.products}" var="product"
+					styleClass="table table-bordered01">
+					<h:column>
+						<f:facet name="header">產品清單</f:facet>
+      #{product.name}
+     </h:column>
+					<h:column>
+						<f:facet name="header">細項價格</f:facet>
+      #{product.price}
+     </h:column>
+				</h:dataTable>
+			</div>
+			<div class="contact-center">
+				<h:form>
+					<input type="hidden" name="rId" id="rId"
+						value="#{orderMealOrgCtrl.showId()}" />
+					<div class="clearfix"></div>
+					<p:calendar id="datetime" value="#{orderMealOrgCtrl.date10}"
+						pattern="MM/dd/yyyy HH:mm:ss" />
+					<div class="clearfix"></div>
+					<h:inputText name="endMoney"
+						value="#{orderMealOrgCtrl.order.endMoney}" style="color: black"
+						a:placeholder="截止金額"></h:inputText>
+					<div class="clearfix"></div>
+					<h:inputTextarea name="info" value="#{orderMealOrgCtrl.order.info}"
+						a:placeholder="說明" style="color: black"></h:inputTextarea>
+					<h:commandButton type="submit" value="送出"
+						action="#{orderMealOrgCtrl.originate}" />
 				</h:form>
-				<div class="bs-docs-example">
-					<table class="table table-bordered01">
-						<thead>
-							<tr>
-								<th></th>
-								<th>店家資訊</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>店名</td>
-								<td>#{ordermeal.restaurant.name}</td>
-							</tr>
-							<tr>
-								<td>電話</td>
-								<td>#{ordermeal.restaurant.phone}</td>
-							</tr>
-							<tr>
-								<td>地址</td>
-								<td>#{ordermeal.restaurant.addr}</td>
-							</tr>
-							<tr>
-								<td>店家服務類型</td>
-								<td>#{ordermeal.restaurant.RType}</td>
-							</tr>
-							<tr>
-								<td>備註</td>
-								<td>#{ordermeal.restaurant.brief}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="">
-
-				
-
-
-
-
-					<h:dataTable value="#{ordermeal.restaurant.products}" var="product"
-						styleClass="table table-bordered01">
-						<h:column>
-							<f:facet name="header">產品清單</f:facet>
-						#{product.name}
-					</h:column>
-						<h:column>
-							<f:facet name="header">細項價格</f:facet>
-						#{product.price}
-					</h:column>
-					</h:dataTable>
-
-
-				</div>
-				<div class="contact-center">
-
-
-					<h:form>
-
-						<p:calendar id="popup" value="#{test.date10}" pattern="yyyy-MM-dd" />
-
-						<h:inputText type="text" name="endMoney" style="color: black"
-							a:placeholder="截止金額"></h:inputText>
-						<div class="clearfix"></div>
-						<h:inputTextarea type="text" name="info" a:placeholder="說明"
-							style="color: black"></h:inputTextarea>
-						<h:commandButton type="submit" value="送出" action="#{test.text}" />
-
-					</h:form>
-
-
-
-				</div>
+			</div>
 		</div>
 	</div>
 	<!-- //services -->
