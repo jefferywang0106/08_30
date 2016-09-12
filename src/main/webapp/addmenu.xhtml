@@ -66,13 +66,22 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse nav-wil"
 					id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li><a href="ServiceServelet">回首頁</a></li>
-						<li class="active"><a href="menu.jsp">我要訂餐</a></li>
-						<li><a href="order.jsp">發起訂餐</a></li>
-						<li><a href="contact.jsp">聯絡我們</a></li>
-						<li><a href="Index.jsp">登出</a></li>
-					</ul>
+					<h:form>
+
+						<ul class="nav navbar-nav">
+							<li><h:commandLink action="#{loginText.returnlogin}"
+									value="回首頁">
+									<f:param name="pageId" value="1" />
+								</h:commandLink></li>
+							<li><a href="menu.xhtml">我要訂餐</a></li>
+							<li><a href="order.xhtml">發起訂餐</a></li>
+							<li class="active"><a href="contact.xhtml">聯絡我們</a></li>
+							<li><h:commandLink action="#{logoutCtrl.logout}" value="登出">
+									<f:param name="pageId" value="1" />
+								</h:commandLink></li>
+						</ul>
+
+					</h:form>
 				</div>
 				<!-- /.navbar-collapse --> </nav>
 			</div>
@@ -121,6 +130,7 @@
 
 					</div>
 				</h:form>
+				<h:inputText id="orderId" value="#{omenu.id}"></h:inputText>
 			</div>
 
 		</div>

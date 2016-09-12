@@ -31,6 +31,7 @@ public class OrderMenuController implements Serializable {
     private List<Restaurant>allRest =null;
     private List<ProductDto> pro =null;
     private int odcount;
+    private String id ;
 	
 
 	public String odermenu() {
@@ -47,8 +48,11 @@ public class OrderMenuController implements Serializable {
 		 FacesContext fc = FacesContext.getCurrentInstance();
 	      Map<String,String> params = 
 	      fc.getExternalContext().getRequestParameterMap();
-	     String id =  params.get("id"); 
-		
+	      id =  params.get("id"); 
+	     
+	      session.setAttribute("id" , id);
+	     
+	     
 	     LOGGER.debug(id);
 		
 		allOrder = oDao.getOrderByAccount(account);
@@ -61,24 +65,11 @@ public class OrderMenuController implements Serializable {
 			if(odmenu.getStatus().equals("進行中")){
 				
 				
-				
-				
-					
-					
+				if(odmenu.getId()==Integer.parseInt(id)){
+	
 					
 					
 				
-			
-//			if(now-odmenu.getEndTime().getTime()>0||odmenu.getMoney()>=odmenu.getEndMoney()){
-//				if(odmenu.getMoney()>0)
-//					oDao.updateStatusByOrderId("已成立", odmenu.getId());
-//				else
-//					oDao.updateStatusByOrderId("已截止", odmenu.getId());								
-//			}else if(odmenu.getMemberAccount().equals(account) && now-odmenu.getEndTime().getTime()<0 ){
-//			
-//			
-//			}
-			
 			LOGGER.debug(Integer.toString(odmenu.getId()));
 			LOGGER.debug(Integer.toString(odmenu.getRestaurantId()));
 			LOGGER.debug(odmenu.getBeginTimeStr());
@@ -107,10 +98,18 @@ public class OrderMenuController implements Serializable {
 			
 			
 			}
-		
+			}
 		}
 		return "addmenu.xhtml";
 
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public List<Restaurant> getAllRest() {

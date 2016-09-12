@@ -46,7 +46,9 @@ public class OrderMealOriginate {
 
 	private Restaurant restaurant;
 	RestaurantDAO restaurantDao = new RestaurantDAO();
-
+ 
+	ItemDAO iDao = new ItemDAO();
+	List<Item> iList = new ArrayList<Item>();
 	private Order order = new Order();
 	OrderDAO oDao = new OrderDAO();
 	private Date date10;
@@ -92,7 +94,7 @@ public class OrderMealOriginate {
 		order.setRestaurantName(restaurant.getName());
 		
 		oDao.insertOrder(order);
-		
+		iDao.insertItemList(iList);	
 		
 		LOGGER.debug(rId);
 		LOGGER.debug(" endtime :{}", date10);

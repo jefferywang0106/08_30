@@ -29,6 +29,10 @@ import org.slf4j.LoggerFactory;
 
 public class Login {
 
+	private UserDAO dao = new UserDAOImpl();
+	
+	
+	
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(Login.class);
 	FacesContext context = FacesContext.getCurrentInstance();
@@ -97,6 +101,9 @@ public class Login {
 
 		if (userExist && ok) {
 
+			Member member =dao.getUserByAccount(user.getAccount(), user.getPassword());
+			session.setAttribute("cash", member.getCash());
+			
 			if (user.getAccount().equals("admin")) {
 				return "admin-services.xhtml";
 
