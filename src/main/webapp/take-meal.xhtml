@@ -77,14 +77,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
 				
 				
+				<h:selectOneMenu value="#{takemeal.order}" >	
 				
-				
-				
-				<h:selectOneMenu value="#{takemeal.localeCode}" onchange="submit()">
-					
-					
-					<f:valueChangeListener type="com.mkyong.CountryValueListener" />
-   					<f:selectItems value="#{country.countryInMap}" />
+   					<f:selectItems value="#{takemeal.order}" />
    					
    					
    				</h:selectOneMenu>

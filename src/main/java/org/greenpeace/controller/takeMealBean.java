@@ -12,6 +12,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.annotation.PostConstruct;
 import javax.faces.*;
 
 import org.greenpeace.dao.CustomerDAO;
@@ -52,7 +53,7 @@ public class takeMealBean{
 
 
 
-
+@PostConstruct
 	public void query(){
 		
 		OrderDAO orderdao = new OrderDAO();

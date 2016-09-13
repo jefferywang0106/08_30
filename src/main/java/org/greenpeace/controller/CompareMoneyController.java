@@ -40,6 +40,10 @@ public class CompareMoneyController implements Serializable {
 	private StartDAO startDAO = new StartDAO();
 	CustomerDAO dao = new CustomerDAO();
 	public String compareMoney(List<ProductDto> pro) {
+		
+		
+		int order_id = 0 ;
+		
 		OrderDAO oDao = new OrderDAO();
 		BigDecimal total = new BigDecimal(0);
 		int f = 1;
@@ -89,7 +93,7 @@ public class CompareMoneyController implements Serializable {
 					String productName = prodto.getData().getName();
 					int price = prodto.getData().getPrice();
 					int number = prodto.getNumber();
-					int order_id = Integer.parseInt(id); // ??
+					order_id = Integer.parseInt(id); // ??
 					int item_id = 0 ;
 					List<Start> list = startDAO.getOrderDatalist(Integer.parseInt(id));
 					for (Start data : list) {
@@ -109,68 +113,34 @@ public class CompareMoneyController implements Serializable {
 					customer.setStatus("未取餐");
 					customer.setCDate(c_date);
 					customer.setOrder_id(order_id);
-	
+					
 					dao.createCustomer(customer);
 					
 					
 				}
 
 			}
+			
+			cash = cash.subtract(total);
+			
+			
+			Order o = oDao.getOrderById(order_id);
+			if(o.getMoney()>=o.getEndMoney()){
+				oDao.updateStatusByOrderId("已成立", order_id);
 
-			return null;
+			}
+			
+			StartDAO sDao = new StartDAO();
+			sDao.updateCash(cash, account);
+		
+			
+			
+
+			return "menu.xhtml";
 
 		}
-		return null;
+		return "menu.xhtml";
 	}
 }
 
-// private CustomerDto data;
-// private CustomerService service = new CustomerServicesImpl();
-// @PostConstruct
-// protected void postMethod(){
-// data =new CustomerDto();
-// data.setPo(new Customer());
-// }
-// public String compareMoney(List<ProductDto> pro) {
-// // 會員餘額是否大於結帳金額
-// CustomerDto tmp = service.logic( pro);
-// data.setPo(new Customer());
-//
-// if (tmp.isOk()) {
-// return compareStatus(data);
-// } else {
-// return "failure";
-// }
-// }
-//
-// public String compareStatus(CustomerDto data) {
-// String result = "orderStillExist";
-//
-// // 結帳金額是否大於結標金額
-// boolean ok = service.judgeExist(data);
-//
-// if(!ok){
-// result="訂單消失";
-// }
-// return result;
-// }
-//
-//
-//
-//
-//
-//
-//
-//
-// public CustomerDto getData() {
-// return data;
-// }
-//
-// public void setData(CustomerDto data) {
-// this.data = data;
-// }
-//
-// public void setService(CustomerService service) {
-// this.service = service;
-// }
-//
+

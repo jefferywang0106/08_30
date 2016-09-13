@@ -51,6 +51,7 @@ public class OrderMealOriginate {
 	List<Item> iList = new ArrayList<Item>();
 	private Order order = new Order();
 	OrderDAO oDao = new OrderDAO();
+	private ProductDAO proDao = new ProductDAO();
 	private Date date10;
 	private String rId;
 
@@ -94,6 +95,26 @@ public class OrderMealOriginate {
 		order.setRestaurantName(restaurant.getName());
 		
 		oDao.insertOrder(order);
+		int max =oDao.getMaxId();
+		
+		
+		 List<Product> prolist= proDao.getProductByRestaurantId(Integer.parseInt(rId));
+		
+		 
+		 for(Product pro : prolist){
+			 pro.getId();
+			 pro.getName();
+			 
+		 }
+		
+		for(Product pro : prolist){
+			Item item = new Item();
+			item.setProduct(pro);
+			item.setOrderId(max);
+			iList.add(item);
+			
+		}
+		
 		iDao.insertItemList(iList);	
 		
 		LOGGER.debug(rId);
