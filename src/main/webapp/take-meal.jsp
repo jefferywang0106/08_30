@@ -41,6 +41,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}else if(!((String)se.getAttribute("mtype")).equals("高級會員")){
 		response.sendRedirect("ServiceServelet");
 	}
+	
+	
+	
+	
+	
+	
 
 	OrderDAO oDao = new OrderDAO();
 	List<Order> oList = null;

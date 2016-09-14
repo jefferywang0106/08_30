@@ -133,7 +133,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<ul class="dropdown-menu" role="menu"
 								aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
 								<li><a href="card.xhtml">儲值</a></li>
-								<li><a href="take-meal.xhtml">確認取餐</a></li>
+							<li>
+							<h:form><h:commandLink action="#{takemeal.query}" value="確認取餐">
+									<f:param name="pageId" value="1" />
+								</h:commandLink>
+								</h:form></li>
 							</ul></li>
 					</ul>
 					<div id="myTabContent" class="tab-content">

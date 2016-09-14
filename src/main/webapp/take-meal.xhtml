@@ -77,55 +77,74 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
 				
 				
-				<h:selectOneMenu value="#{takemeal.order}" >	
-				
-   					<f:selectItems value="#{takemeal.order}" />
-   					
+				<h:selectOneMenu value="#{takemeal.oid.id}" onchage="submit()" >	
+				 
+					<f:valueChangeListener type ="takemeal.hahaha" />
+   					<f:selectItems value="#{takemeal.orderDto}" var="name" itemLabel="#{name.name}" itemValue="#{name.data.id}" />
+   				
    					
    				</h:selectOneMenu>
 					
+					<h:commandButton>
 					
+					<f:param value="#{takemeal.orderDto.data.id}" />
+					
+					</h:commandButton>
 					
 					
 					
 					
 				</div>
 			</div>
+			
 			<h:form>
 				<div class="bs-docs-example">
 				
 				
-				
-				
-				
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>產品</th>
-								<th>數量</th>
-								<th>單價</th>
-								<th>小計</th>
-								<th>訂購人</th>
-								<th>取餐</th>
-							</tr>
-						</thead>
+					<h:dataTable class="table table-bordered" value="" var="">
+					
+			
+						<h:column>
+								<f:facet name="header">產品</f:facet>
+											#{deposit.id}
+      					 </h:column>
+      					 
+      					 	<h:column>
+								<f:facet name="header">數量</f:facet>
+											#{deposit.id}
+      					 </h:column>
+      					 
+      					 	<h:column>
+								<f:facet name="header">單價</f:facet>
+											#{deposit.id}
+      					 </h:column>
+      					 
+      					 	<h:column>
+								<f:facet name="header">小計</f:facet>
+											#{deposit.id}
+      					 </h:column>
+      					 
+      					 	<h:column>
+								<f:facet name="header">訂購人</f:facet>
+											#{deposit.id}
+      					 </h:column>
+      					 
+      					 	<h:column>
+								<f:facet name="header">取餐</f:facet>
+											#{deposit.id}
+      					 </h:column>
+      			
+						
 						<tbody id="take">
 						</tbody>
-					</table>
-					
-					
-					
-					
-					
-					
+					</h:dataTable>
 					
 					
 				</div>
 				<h4 style="color: #999999">說明：若會員已取餐，請於取餐欄位處打勾，並點選下方確認取餐按鈕。</h4>
 				<br />
 				<h4 align="center">
-					<h:commandButton class="btn btn-default" type="submit" value="確認取餐"
-						 />
+					<h:commandButton class="btn btn-default" value="確認取餐" />
 				</h4>
 			</h:form>
 			<div style="margin-top: 1em;"></div>
