@@ -75,63 +75,54 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="well">
 					訂單速覽 - 
 				
+				<h:form>
 				
-				
-				<h:selectOneMenu value="#{takemeal.oid.id}" onchage="submit()" >	
+				<h:selectOneMenu value="#{takemeal.oid.id}" onchange="submit()" valueChangeListener="#{takemeal.hahaha}" >	
 				 
-					<f:valueChangeListener type ="takemeal.hahaha" />
+					<f:selectItem itemLabel="請選擇訂單" />
    					<f:selectItems value="#{takemeal.orderDto}" var="name" itemLabel="#{name.name}" itemValue="#{name.data.id}" />
    				
    					
    				</h:selectOneMenu>
 					
-					<h:commandButton>
+					</h:form>
 					
-					<f:param value="#{takemeal.orderDto.data.id}" />
-					
-					</h:commandButton>
-					
-					
-					
-					
-				</div>
-			</div>
-			
-			<h:form>
+					<h:form>
 				<div class="bs-docs-example">
 				
 				
-					<h:dataTable class="table table-bordered" value="" var="">
+					<h:dataTable class="table table-bordered" value="#{takemeal.newList}" var="clist">
 					
+		
 			
 						<h:column>
 								<f:facet name="header">產品</f:facet>
-											#{deposit.id}
+											#{clist.itemName}
       					 </h:column>
       					 
       					 	<h:column>
 								<f:facet name="header">數量</f:facet>
-											#{deposit.id}
+											#{clist.counts}
       					 </h:column>
       					 
       					 	<h:column>
 								<f:facet name="header">單價</f:facet>
-											#{deposit.id}
+											#{clist.itemPrice}
       					 </h:column>
       					 
       					 	<h:column>
 								<f:facet name="header">小計</f:facet>
-											#{deposit.id}
+											#{clist.money}
       					 </h:column>
       					 
       					 	<h:column>
 								<f:facet name="header">訂購人</f:facet>
-											#{deposit.id}
+											#{clist.memberAccount}
       					 </h:column>
       					 
       					 	<h:column>
 								<f:facet name="header">取餐</f:facet>
-											#{deposit.id}
+											#{clist.status}
       					 </h:column>
       			
 						
@@ -147,6 +138,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h:commandButton class="btn btn-default" value="確認取餐" />
 				</h4>
 			</h:form>
+					
+					
+					
+					
+					
+					
+					
+					
+				</div>
+			</div>
+			
+			
 			<div style="margin-top: 1em;"></div>
 		</div>
 	</div>

@@ -1,7 +1,5 @@
 package org.greenpeace.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -10,28 +8,16 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.annotation.PostConstruct;
-import javax.faces.*;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.greenpeace.dao.CustomerDAO;
-import org.greenpeace.dao.ProductDAO;
-import org.greenpeace.dao.RestaurantDAO;
-import org.greenpeace.dao.UserDAO;
-import org.greenpeace.dao.UserDAOImpl;
-import org.greenpeace.dao.ItemDAO;
+
 import org.greenpeace.dao.OrderDAO;
 import org.greenpeace.model.Customer;
-import org.greenpeace.model.Item;
-import org.greenpeace.model.Member;
+
 import org.greenpeace.model.Order;
 import org.greenpeace.model.OrderListDto;
-import org.greenpeace.model.Product;
-import org.greenpeace.model.Restaurant;
-import org.hibernate.validator.constraints.Length;
+import org.greenpeace.model.ProductDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,8 +27,10 @@ public class takeMealBean {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(takeMealBean.class);
 
-	CustomerDAO cDao = new CustomerDAO();
-	List<Customer> cList = cDao.queryAllCustomer();
+	private List<Customer> newList = new ArrayList<Customer>();
+
+	OrderDAO oDao = new OrderDAO();
+	List<Order> oList = oDao.getAllOrderByStatus();
 
 	private Order oid = new Order();
 
@@ -74,7 +62,6 @@ public class takeMealBean {
 		this.orderDto = orderDto;
 	}
 
-	
 	public String query() {
 
 		OrderDAO orderdao = new OrderDAO();
@@ -86,28 +73,53 @@ public class takeMealBean {
 
 		order = orderdao.getAllOrderByStatus();
 
-		orderDto = new LinkedList<OrderListDto>();
+	 orderDto = new LinkedList<OrderListDto>();
 		for (Order ord : order) {
 			SimpleDateFormat test = new SimpleDateFormat("yyyy/MM/dd ");
 
 			orderDto.add(new OrderListDto(ord, ord.getMemberAccount() + "-" + ord.getRestaurantName() + "-"
-					+ ord.getRestaurantPhone() + "-" + ord.getStatus()));
+					+ ord.getRestaurantPhone() + "-" + ord.getStatus() + "-" + Integer.toString(ord.getId())));
 
 		}
 
 		for (OrderListDto dto : orderDto) {
 			LOGGER.debug(dto.getName());
 		}
-		
+
 		return "take-meal.xhtml";
 	}
 
-	public void hahaha(ValueChangeEvent e){
+	public void hahaha(ValueChangeEvent e) {
 
-		LOGGER.debug("123");
-		LOGGER.debug(e.getNewValue().toString());
-		
-	
+		CustomerDAO cDao = new CustomerDAO();
+		List<Customer> cList = cDao.queryAllCustomer();
+
+		LOGGER.debug("new Value:{}" ,e.getNewValue() );
+		 if(e.getNewValue()  ==null ||e.getNewValue()  ==e.getOldValue()){
+			 return ;
+		 }
+		String id = e.getNewValue().toString();
+		int lid = Integer.parseInt(id);
+
+		for (Customer cus : cList) {
+
+			LOGGER.debug(Integer.toString(cus.getOrderId()));
+			if (lid == cus.getOrderId()) {
+				newList.add(cus);
+				LOGGER.debug(ToStringBuilder.reflectionToString(cus));
+				break;
+			}
+
+		}
+
+	}
+
+	public List<Customer> getNewList() {
+		return newList;
+	}
+
+	public void setNewList(List<Customer> newList) {
+		this.newList = newList;
 	}
 
 }
